@@ -8,6 +8,8 @@
     </ul>
 
     <div class="flex items-center gap-3">
+        <input type="text" class="search-input" placeholder="Search...">
+        
         @if (Auth::check())
             <a href="/profile">
                 <img src="{{ asset('storage/'.Auth::user()->image) }}" alt="Profile Picture" width="50" height="50" style="border-radius: 50%;">
