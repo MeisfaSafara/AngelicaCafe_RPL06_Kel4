@@ -31,7 +31,6 @@
     @include('layout.navbar')
     {{-- NAVBAR --}}
     <div class="w-full h-[20em] flex flex-col items-center justify-center"
-        style="background-image: url('/img/aboutUs.png'); background-size: cover;">
         <h1 class="text-4xl font-bold text-white mb-4">About Us</h1>
         <p class="text-white text-xl w-[20em] text-center">Welcome to angelica catering, where
             every bite tells a story</p>
@@ -44,12 +43,18 @@
         <div class="w-1/2">
             <div class="flex gap-2 items-center my-4">
                 <h1 class="font-bold">Our Story</h1>
+                <img class="h-3" src={{ asset('img/garisAboutUs.png') }} alt="">
             </div>
-            <p class="w-[60%]">Story Angelica Cafe</p>
+            <img src={{ asset('/img/AngelicaCatering.png') }} alt="" class="my-4">
+            <p class="w-[60%]">Di Angelica Cafe, kisah kami dimulai dari impian bersama untuk membawa kelezatan dan keindahan cita rasa ke setiap perayaan hidup. Dengan keahlian kuliner dan semangat yang menyala-nyala, kami memutuskan untuk mendirikan Angelica Cafe sebagai wujud dari visi kami tentang menyatukan rasa dan seni dalam setiap hidangan.
+
+                Dibangun di atas prinsip kualitas tak tertandingi, Angelica Cafe selalu berkomitmen untuk menyajikan hidangan-hidangan yang disiapkan dengan teliti menggunakan bahan-bahan segar dan berkualitas tinggi. Setiap menu adalah hasil dari eksplorasi kami dalam menciptakan harmoni rasa yang sempurna dan tampilan yang memukau.</p>
         </div>
         <div class="flex gap-2">
+            <img src={{ asset('img/koki.png') }} alt="">
             <div class="flex flex-col justify-between   ">
-
+                <img src={{ asset('img/masakan1.png') }} alt="">
+                <img src={{ asset('img/masakan2.png') }} alt="">
             </div>
         </div>
     </div>

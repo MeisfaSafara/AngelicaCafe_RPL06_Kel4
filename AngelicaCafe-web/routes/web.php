@@ -23,7 +23,12 @@ Route::get('/cart', function () {
     return view('cart');
 });
 
+Route::get('/admin', function () {
+    return view('admin.dashboard');
+});
+
 Route::get('orders',[OrderController::class,'index'])->name('admin.orders.indes');
 
 Route::get('/review',[ReviewController::class,'index']);
 Route::post('/review/store',[ReviewController::class,'store'])->name('review.store');
+
