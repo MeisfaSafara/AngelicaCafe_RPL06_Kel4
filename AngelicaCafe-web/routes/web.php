@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,6 @@ Route::get('/cart', function () {
 });
 
 Route::get('orders',[OrderController::class,'index'])->name('admin.orders.indes');
+
+Route::get('/review',[ReviewController::class,'index']);
+Route::post('/review/store',[ReviewController::class,'store'])->name('review.store');
