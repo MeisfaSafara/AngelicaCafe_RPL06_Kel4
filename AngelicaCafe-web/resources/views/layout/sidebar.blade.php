@@ -77,11 +77,11 @@
            </li>
 
            <li>
-              <a href="/admin/produks" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+              <a href="/admin/aboutUs" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                   <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                      <path d="M10 18C14.418 18 18 14.418 18 10C18 5.582 14.418 2 10 2C5.582 2 2 5.582 2 10C2 14.418 5.582 18 10 18ZM21.707 20.293L17.314 15.9C18.403 14.507 19 12.797 19 11C19 6.589 15.411 3 11 3C6.589 3 3 6.589 3 11C3 15.411 6.589 19 11 19C12.798 19 14.507 18.403 15.9 17.314L20.293 21.707C20.488 21.902 20.744 22 21 22C21.256 22 21.512 21.902 21.707 21.707C22.098 21.316 22.098 20.684 21.707 20.293ZM11 17C7.134 17 4 13.866 4 10C4 6.134 7.134 3 11 3C14.866 3 18 6.134 18 10C18 13.866 14.866 17 11 17Z" />
                   </svg>
-                 <span class="flex-1 ms-3 whitespace-nowrap">Products</span>
+                 <span class="flex-1 ms-3 whitespace-nowrap">About Us</span>
               </a>
            </li>
            
