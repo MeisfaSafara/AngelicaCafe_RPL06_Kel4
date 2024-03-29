@@ -27,6 +27,10 @@ Route::get('/admin', function () {
     return view('admin.dashboard');
 });
 
+Route::get('/profile', function () {
+    return view('profile.profile');
+});
+
 Route::get('orders',[OrderController::class,'index'])->name('admin.orders.indes');
 
 Route::get('/review',[ReviewController::class,'index']);
