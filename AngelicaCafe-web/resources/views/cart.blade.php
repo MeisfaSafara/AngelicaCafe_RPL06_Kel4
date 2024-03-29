@@ -1,3 +1,10 @@
+<?php
+$cartData = [];
+foreach($cart as $d){
+    $cartData[] = $d;
+}
+$cartData = json_encode($cartData);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -90,6 +97,70 @@
         <p class="text-center text-gray-400">© 2023 Angelica Cafe | All rights reserved</p>
     </div>
     {{-- FOOTER --}}
+    <script>
+        function cart(){
+            return {
+                test:1,
+                dataCart:[],
+                subTotal:0,
+                async initCart(){
+                    let a = document.createElement("div")
+                    a.innerHTML = "{{$cartData}}"
+                    this.dataCart = JSON.parse(a.innerHTML)
+                    this.dataCart.forEach((item)=>{
+                        this.subTotal += parseInt(item.price) * item.quantity
+                    })
+                    console.log(JSON.stringify(this.dataCart));
+                },
+                incrementCart(itemId){
+                    this.subTotal = 0
+                    this.dataCart = this.dataCart.filter((item)=>{
+                        if(item.id_produk  == itemId){
+                            item.quantity ++;
+                        }
+                        this.subTotal += parseInt(item.price) * item.quantity
+                        return item
+                    })
+                },
+                decrementCart(itemId){
+                    this.subTotal = 0
+                    this.dataCart = this.dataCart.filter((item)=>{
+                        if(item.id_produk  == itemId){
+                            if(item.quantity > 0){
+                                item.quantity --;
+                            }else{
+                                return null
+                            }
+                        }
+                        this.subTotal += parseInt(item.price) * item.quantity
+                        return item
+                    })
+                },
+                deleteCart(itemId){
+                    this.subTotal = 0
+                    this.dataCart = this.dataCart.filter((item)=>{
+                        if(item.id_produk != itemId){
+                        this.subTotal += parseInt(item.price) * item.quantity
+                        }
+                        return item.id_produk != itemId
+                    })
+                },
+                async updateChart(){
+                    try {
+                        let res = await axios.post('http://127.0.0.1:8000/updatecart',{
+                        itemData:this.dataCart
+                    })
+                        if(res.data == 1){
+                            window.location.replace('/checkout')
+                        }
+                    } catch (error) {
+                        console.log(error)
+                    }
+                }
+            }
+        }
+
+    </script>
 </body>
 
 </html>
