@@ -59,6 +59,5 @@ Route::prefix('admin')->middleware(['must-admin'])->group(function () {
     Route::put('produks/update/{id}', [ProdukController::class, 'update'])->name('admin.produks.update');
     Route::delete('produks/delete/{id}',[ProdukController::class, 'delete'])->name('admin.produks.delete');
     Route::get('orders',[OrderController::class,'index'])->name('admin.orders.indes');
-    Route::get('orders/detail/{id}',[OrderController::class,'detailOrder'])->name('admin.orders.detail');
     Route::put('orders/status/update/{id}',[OrderController::class,'updateStatusOrder'])->name('admin.orders.update.status');
 });
