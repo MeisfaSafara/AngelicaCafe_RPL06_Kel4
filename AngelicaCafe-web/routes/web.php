@@ -47,17 +47,4 @@ Route::prefix('admin')->group(function () {
 });
 
 
-Route::prefix('admin')->middleware(['must-admin'])->group(function () {
-    // Route untuk halaman utama admin
-    Route::get('/', [AdminController::class, 'index'])->name('admin.home');
 
-    // Route untuk mengelola produk
-    Route::get('produks', [ProdukController::class, 'index']);
-    Route::get('produks/create', [ProdukController::class, 'create'])->name('admin.produks.create');;
-    Route::post('produks/store', [ProdukController::class, 'store'])->name('admin.produks.store');
-    Route::get('produks/update/{id}', [ProdukController::class, 'edit']);
-    Route::put('produks/update/{id}', [ProdukController::class, 'update'])->name('admin.produks.update');
-    Route::delete('produks/delete/{id}',[ProdukController::class, 'delete'])->name('admin.produks.delete');
-    Route::get('orders',[OrderController::class,'index'])->name('admin.orders.indes');
-    Route::put('orders/status/update/{id}',[OrderController::class,'updateStatusOrder'])->name('admin.orders.update.status');
-});
