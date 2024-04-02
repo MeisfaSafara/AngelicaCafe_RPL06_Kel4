@@ -13,10 +13,12 @@ class Order extends Model
         'total_amount',
     ];
 
-    // menfinisikan relasi antara model Order dan model User jika diperlukan
+    // Definisikan relasi antara model Order dan model User jika diperlukan
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    //Definisikan relasi antara model Order dan model OrderDetail jika diperlukan
 
 }
