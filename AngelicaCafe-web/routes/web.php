@@ -25,6 +25,7 @@ Route::get('/cart', function () {
     return view('cart');
 });
 
+
 Route::get('/admin', function () {
     return view('admin.dashboard');
 });
@@ -61,3 +62,4 @@ Route::prefix('admin')->middleware(['must-admin'])->group(function () {
     Route::get('orders',[OrderController::class,'index'])->name('admin.orders.indes');
     Route::put('orders/status/update/{id}',[OrderController::class,'updateStatusOrder'])->name('admin.orders.update.status');
 });
+
