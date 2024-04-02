@@ -17,13 +17,7 @@ class ProdukController extends Controller
         ]);
     }
 
-    public function create(){
-        // Tampilkan formulir untuk menambah produk baru
-        $kategori =  Kategori::all();
-        return view('admin.addproduk',[
-            'kategori' => $kategori
-        ]);
-    }
+    
 
     public function store(Request $request){
         // Validasi data yang dikirimkan oleh form
