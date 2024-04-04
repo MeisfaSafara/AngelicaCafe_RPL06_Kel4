@@ -30,7 +30,6 @@
             every bite tells a story</p>
     </div>
 
-
     {{-- OUR STORY --}}
     <div class="flex my-6 px-[10em]">
         <div class="w-1/2 pr-6">
