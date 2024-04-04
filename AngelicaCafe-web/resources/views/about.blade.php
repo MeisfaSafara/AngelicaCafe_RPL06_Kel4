@@ -11,7 +11,7 @@
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
     {{-- DisyUI --}}
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.19/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.19/dist-64.min.css" rel="stylesheet" type="text/css" />
     {{-- DisyUI --}}
 
     <!-- Add these links to your HTML file -->
@@ -19,54 +19,51 @@
     <title>Document</title>
 </head>
 
-<style>
-    .gambar {
-        /* background-image: url({{ url('/img/MenuBackground.png') }}); */
-        background-size: cover;
-    }
-</style>
-
 <body data-theme="cupcake">
     {{-- NAVBAR --}}
     @include('layout.navbar')
     {{-- NAVBAR --}}
-    <div class="w-full h-[20em] flex flex-col items-center justify-center"
+    <div class="w-64 h-[20em] flex flex-col items-center justify-center"
         style="background-image: url({{ url('/img/aboutUs.png') }}); background-size: cover">
         <h1 class="text-4xl font-bold text-white mb-4">About Us</h1>
-        <p class="text-white text-xl w-[20em] text-center">Welcome to angelica catering, where
-            every bite tells a story</p>
+        <p class="text-white text-xl w-[20em] text-center">Welcome to Angelica Catering, where every bite tells a
+            story</p>
     </div>
 
 
-    {{-- OUR MENU --}}
-
-    <div class="flex my-6 justify-between px-[10em]">
-        <div class="w-1/2">
-            <div class="flex gap-2 items-center my-4">
-                <h1 class="font-bold">Our Story</h1>
+    {{-- OUR STORY --}}
+    <div class="flex my-6 px-[10em]">
+        <div class="w-1/2 pr-6">
+            <div class="flex gap-2 items-center mb-4">
+                <h1 class="font-bold text-lg md:text-xl">Our Story</h1>
                 <img class="h-3" src={{ asset('img/garisAboutUs.png') }} alt="">
             </div>
-            <img src={{ asset('/img/AngelicaCatering.png') }} alt="" class="my-4">
-                <p class="w-[100%] text-sm md:text-base">Angelica Cafe bermula dari impian kami untuk menghadirkan cita rasa dan keindahan dalam setiap momen spesial. Kami memulai perjalanan ini dengan tekad kuat untuk menjadi penyedia layanan catering terbaik di Indonesia.</p>
-                <p class="w-[100%] text-sm md:text-base">Kami mengutamakan kualitas tinggi dalam setiap hidangan dengan menggunakan bahan-bahan segar dan teknik memasak terbaik. Inovasi dalam menu adalah fokus utama kami, yang terus kami kembangkan sesuai dengan tren kuliner dan selera pelanggan.</p>
-                <p class="w-[100%] text-sm md:text-base">Pelayanan yang prima adalah komitmen kami, yang kami lakukan dengan penuh keramahan, responsif, dan profesional dalam setiap interaksi dengan pelanggan. Kami percaya pada pembangunan kemitraan yang kuat dengan pelanggan, pemasok, dan mitra lainnya untuk menciptakan ekosistem bisnis yang saling menguntungkan.</p>
+            <img src={{ asset('/img/AngelicaCatering.png') }} alt="" class="mb-4">
+            <p class="text-sm md:text-base leading-relaxed mb-4">Angelica Cafe bermula dari impian kami untuk menghadirkan
+                cita rasa dan keindahan dalam setiap momen spesial. Kami memulai perjalanan ini dengan tekad kuat untuk
+                menjadi penyedia layanan catering terbaik di Indonesia.</p>
+            <p class="text-sm md:text-base leading-relaxed mb-4">Kami mengutamakan kualitas tinggi dalam setiap hidangan
+                dengan menggunakan bahan-bahan segar dan teknik memasak terbaik. Inovasi dalam menu adalah fokus utama
+                kami, yang terus kami kembangkan sesuai dengan tren kuliner dan selera pelanggan.</p>
+            <p class="text-sm md:text-base leading-relaxed mb-4">Pelayanan yang prima adalah komitmen kami, yang kami lakukan
+                dengan penuh keramahan, responsif, dan profesional dalam setiap interaksi dengan pelanggan. Kami percaya
+                pada pembangunan kemitraan yang kuat dengan pelanggan, pemasok, dan mitra lainnya untuk menciptakan
+                ekosistem bisnis yang saling menguntungkan.</p>
         </div>
-        <div class="flex gap-2">
-            <img src={{ asset('img/koki.png') }} alt="">
+        <div class="w-1/2">
+            <div class="grid grid-cols-2 gap-4">
+                <img src={{ asset('img/Aboutus7o.png') }} alt="" class="mb-4 w-64 h-48">
+                <img src={{ asset('img/Aboutus4.png') }} alt="" class="mb-4 w-64 h-48">
+                <img src={{ asset('img/Aboutus3.png') }} alt="" class="mb-4 w-64 h-48">
+                <img src={{ asset('img/Aboutus6.png') }} alt="" class="mb-4 w-64 h-48">
+                <img src={{ asset('img/Aboutus5.png') }} alt="" class="mb-4 w-64 h-48">
+                <img src={{ asset('img/Aboutus2.png') }} alt="" class="mb-4 w-64 h-48">
+            </div>
         </div>
     </div>
 
-    {{-- OUR MENU --}}
-
     {{-- FOOTER --}}
-
-
-    {{-- FOOTER --}}
-    </div>
     @include('layout.footer')
-
-
-
 
 </body>
 
