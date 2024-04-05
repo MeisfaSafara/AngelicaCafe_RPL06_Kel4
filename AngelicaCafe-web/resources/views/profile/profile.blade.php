@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -70,15 +71,30 @@
             <div class="flex gap-3">
                 <div class="w-[70%]">
                     <h1 class="text-3xl font-bold">Change User Information Here</h1>
+                    <form action="{{ route('profile.update') }}" method="POST" class="flex flex-col gap-4  rounded-xl p-4 h-full">
                         @method('PUT')
                         @csrf
+                        <div class="flex gap-4 w-full mb-3">
+                            <input type="text" placeholder="First Name" class="border-2 h-10 p-3 rounded-lg w-full" value="{{$user->first_name}}" name="first_name" />
+                            <input type="text" placeholder="Last Name" class="border-2 h-10 p-3 rounded-lg w-full" value="{{$user->last_name}}" name="last_name" />
+                        </div>
+                        <div class="flex gap-4 mb-3">
+                            <input type="text" placeholder="Email" class="border-2 h-10 p-3 rounded-lg w-full" value="{{$user->email}}" name="email" />
+                            <input type="text" placeholder="Phone" class="border-2 h-10 p-3 rounded-lg w-full" value="{{$user->phone_number}}" name="phone" />
+                        </div>
+                        <input type="password" placeholder="Password" class="border-2 h-10 p-3 rounded-lg w-full" name="password" />
+                        <input type="password" placeholder="Confirm Password" class="border-2 h-10 p-3 rounded-lg w-full" name="confirm_password" />
                         <button class="w-full border-2 text-lg text-gray-400 font-bold">Update Information</button>
                     </form>
                 </div>
                 <div class="w-[20%] h-full flex">
                     <div class="border-2 w-full h-full py-4 rounded-xl flex flex-col gap-3 justify-center items-center">
+                        <img class="h-32 rounded-full" src="{{ asset('storage/'.$user->image) }}" alt="Profile Picture">
+                        <form action="{{ route('profile.update-profile-picture') }}" method="POST" enctype="multipart/form-data">
                             @method('put')
                             @csrf
+                            <input type="file" id="profilePicture" name="profilePicture" accept=".jpeg, .jpg, .png"
+                                class="hidden">
                             <p class="text-xs text-gray-400 mx-6">Picture size: max. 1 MB Picture format: .JPEG, .PNG</p>
                             <div class="flex justify-center items-center">
                                 <label for="profilePicture" class="cursor-pointer border-2 px-6 py-2 rounded-xl font-bold text-xl text-gray-400 bg-transparent">
@@ -107,6 +123,8 @@
     {{-- FOOTER --}}
     @include('layout.footer');
     {{-- FOOTER --}}
+
     
 </body>
+
 </html>
