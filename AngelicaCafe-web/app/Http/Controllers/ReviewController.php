@@ -9,8 +9,8 @@ class ReviewController extends Controller
 {
     public function index()
     {
-        $review = Review::all();
-        return view('review.index', ['review' => $review]);
+        $latestReview = Review::latest()->first();
+        return view('review.index', compact('latestReview'));
     }
 
     public function store(Request $request)
