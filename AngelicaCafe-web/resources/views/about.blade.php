@@ -23,13 +23,12 @@
     {{-- NAVBAR --}}
     @include('layout.navbar')
     {{-- NAVBAR --}}
-    <div class="w-64 h-[20em] flex flex-col items-center justify-center"
+    <div class="w-full h-[20em] flex flex-col items-center justify-center"
         style="background-image: url({{ url('/img/aboutUs.png') }}); background-size: cover">
         <h1 class="text-4xl font-bold text-white mb-4">About Us</h1>
-        <p class="text-white text-xl w-[20em] text-center">Welcome to Angelica Catering, where every bite tells a
-            story</p>
+        <p class="text-white text-xl w-[20em] text-center">Welcome to angelica catering, where
+            every bite tells a story</p>
     </div>
-
 
     {{-- OUR STORY --}}
     <div class="flex my-6 px-[10em]">

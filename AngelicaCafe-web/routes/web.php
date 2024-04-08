@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\AdminAboutUsController;
@@ -16,6 +17,16 @@ use App\Http\Controllers\AdminAboutUsController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('/login', function () {
+    return view('/auth/login');
+});
+Route::get('/forgot', function () {
+    return view('/auth/forgotPassword');
+});
+Route::get('/signup', function () {
+    return view('/auth/signup');
+});
 
 Route::get('/about', function () {
     return view('about');
@@ -35,6 +46,10 @@ Route::get('/admin', function () {
 Route::get('/profile', function () {
     return view('profile.profile');
 });
+
+Route::post('/login',[AuthController::class, 'login'])->name('login');
+Route::post('/signup',[AuthController::class, 'register'])->name('register');
+Route::get('/cekUser',[AuthController::class, 'cekUser'])->name('cekuser');
 
 Route::get('orders',[OrderController::class,'index'])->name('admin.orders.indes');
 
