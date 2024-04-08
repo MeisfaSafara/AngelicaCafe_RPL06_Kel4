@@ -38,11 +38,24 @@
                 <img class="h-3" src={{ asset('img/garisAboutUs.png') }} alt="">
             </div>
             <img src={{ asset('/img/AngelicaCatering.png') }} alt="" class="mb-4">
+<<<<<<< HEAD
             <div class="container mx-auto">
                 <div class="py-8">
                     {{$about->content}}
                 </div>
             </div>
+=======
+            <p class="text-sm md:text-base leading-relaxed mb-4">Angelica Cafe bermula dari impian kami untuk menghadirkan
+                cita rasa dan keindahan dalam setiap momen spesial. Kami memulai perjalanan ini dengan tekad kuat untuk
+                menjadi penyedia layanan catering terbaik di Indonesia.</p>
+            <p class="text-sm md:text-base leading-relaxed mb-4">Kami mengutamakan kualitas tinggi dalam setiap hidangan
+                dengan menggunakan bahan-bahan segar dan teknik memasak terbaik. Inovasi dalam menu adalah fokus utama
+                kami, yang terus kami kembangkan sesuai dengan tren kuliner dan selera pelanggan.</p>
+            <p class="text-sm md:text-base leading-relaxed mb-4">Pelayanan yang prima adalah komitmen kami, yang kami lakukan
+                dengan penuh keramahan, responsif, dan profesional dalam setiap interaksi dengan pelanggan. Kami percaya
+                pada pembangunan kemitraan yang kuat dengan pelanggan, pemasok, dan mitra lainnya untuk menciptakan
+                ekosistem bisnis yang saling menguntungkan.</p>
+>>>>>>> cc624847249d775e46518be063115b9a790ae325
         </div>
         <div class="w-1/2">
             <div class="grid grid-cols-2 gap-4">

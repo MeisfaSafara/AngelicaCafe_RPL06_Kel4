@@ -21,6 +21,19 @@ use App\Http\Controllers\AdminAboutUsController;
 
 Route::get('/login', function () {
     return view('/auth/login');
+<<<<<<< HEAD
+=======
+});
+Route::get('/forgot', function () {
+    return view('/auth/forgotPassword');
+});
+Route::get('/signup', function () {
+    return view('/auth/signup');
+});
+
+Route::get('/about', function () {
+    return view('about');
+>>>>>>> cc624847249d775e46518be063115b9a790ae325
 });
 Route::get('/forgot', function () {
     return view('/auth/forgotPassword');
