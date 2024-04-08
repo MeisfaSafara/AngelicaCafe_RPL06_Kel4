@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AboutusController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\AdminAboutUsController;
@@ -17,9 +19,17 @@ use App\Http\Controllers\AdminAboutUsController;
 |
 */
 
-Route::get('/about', function () {
-    return view('about');
+Route::get('/login', function () {
+    return view('/auth/login');
 });
+Route::get('/forgot', function () {
+    return view('/auth/forgotPassword');
+});
+Route::get('/signup', function () {
+    return view('/auth/signup');
+});
+
+Route::get('/about',[AboutusController::class, 'index'])->name('aboutus');
 
 Route::get('/cart', function () {
     return view('cart');
@@ -36,6 +46,10 @@ Route::get('/profile', function () {
     return view('profile.profile');
 });
 
+Route::post('/login',[AuthController::class, 'login'])->name('login');
+Route::post('/signup',[AuthController::class, 'register'])->name('register');
+Route::get('/cekUser',[AuthController::class, 'cekUser'])->name('cekuser');
+
 Route::get('orders',[OrderController::class,'index'])->name('admin.orders.indes');
 
 Route::get('/review',[ReviewController::class,'index']);
@@ -47,17 +61,6 @@ Route::prefix('admin')->group(function () {
 });
 
 
-Route::prefix('admin')->middleware(['must-admin'])->group(function () {
-    // Route untuk halaman utama admin
-    Route::get('/', [AdminController::class, 'index'])->name('admin.home');
 
-    // Route untuk mengelola produk
-    Route::get('produks', [ProdukController::class, 'index']);
-    Route::get('produks/create', [ProdukController::class, 'create'])->name('admin.produks.create');;
-    Route::post('produks/store', [ProdukController::class, 'store'])->name('admin.produks.store');
-    Route::get('produks/update/{id}', [ProdukController::class, 'edit']);
-    Route::put('produks/update/{id}', [ProdukController::class, 'update'])->name('admin.produks.update');
-    Route::delete('produks/delete/{id}',[ProdukController::class, 'delete'])->name('admin.produks.delete');
-    Route::get('orders',[OrderController::class,'index'])->name('admin.orders.indes');
-    Route::put('orders/status/update/{id}',[OrderController::class,'updateStatusOrder'])->name('admin.orders.update.status');
-});
+
+
