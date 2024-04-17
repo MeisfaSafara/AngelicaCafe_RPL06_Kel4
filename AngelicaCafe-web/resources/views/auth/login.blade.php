@@ -18,7 +18,6 @@
 
     <title>Document</title>
 </head>
-
 <style>
     .gambar {
         /* background-image: url({{ url('/img/MenuBackground.png') }}); */
