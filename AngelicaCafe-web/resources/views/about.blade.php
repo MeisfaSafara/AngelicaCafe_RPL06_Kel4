@@ -39,7 +39,6 @@
             </div>
             <img src={{ asset('/img/AngelicaCatering.png') }} alt="" class="mb-4">
             <div class="container mx-auto">
-                //tampilan connect database
                 <div class="py-8">
                     {{$about->content}}
                 </div>
