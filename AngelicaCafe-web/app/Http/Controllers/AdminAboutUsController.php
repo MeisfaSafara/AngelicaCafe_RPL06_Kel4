@@ -12,7 +12,7 @@ class AdminAboutUsController extends Controller
         $aboutUs = AboutUs::first();
         return view('admin.aboutUs.edit', compact('aboutUs'));
     }
-
+//configurasi admin about
     public function update(Request $request)
     {
         $aboutUs = AboutUs::first();

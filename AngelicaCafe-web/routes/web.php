@@ -38,7 +38,7 @@ Route::get('/forgot', function () {
 Route::get('/signup', function () {
     return view('/auth/signup');
 });
-
+//controll database about us
 Route::get('/about',[AboutusController::class, 'index'])->name('aboutus');
 
 Route::get('/cart', function () {
