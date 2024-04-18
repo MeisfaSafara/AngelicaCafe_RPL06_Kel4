@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutusController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\OrderController;
@@ -31,6 +32,14 @@ Route::get('/signup', function () {
 Route::get('/about', function () {
     return view('about');
 });
+Route::get('/forgot', function () {
+    return view('/auth/forgotPassword');
+});
+Route::get('/signup', function () {
+    return view('/auth/signup');
+});
+// controll database about us
+Route::get('/about',[AboutusController::class, 'index'])->name('aboutus');
 
 Route::get('/cart', function () {
     return view('cart');
