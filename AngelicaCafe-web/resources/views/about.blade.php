@@ -39,19 +39,26 @@
             </div>
             <img src={{ asset('/img/AngelicaCatering.png') }} alt="" class="mb-4">
             <div class="container mx-auto">
-                <div class="py-8">
-                    {{$about->content}}
+                @section('content')
+                <div class="container">
+                    <div class="py-8">
+                        {{$about->content}}
+                    </div>
                 </div>
             </div>
         </div>
+
         <div class="w-1/2">
+            <div class="flex flex-col justify-between   ">
+                    <img src={{ asset('img/Aboutus7o.png') }} alt=""class="mb-4">
+            </div>
             <div class="grid grid-cols-2 gap-4">
-                <img src={{ asset('img/Aboutus7o.png') }} alt="" class="mb-4 w-64 h-48">
                 <img src={{ asset('img/Aboutus4.png') }} alt="" class="mb-4 w-64 h-48">
                 <img src={{ asset('img/Aboutus3.png') }} alt="" class="mb-4 w-64 h-48">
                 <img src={{ asset('img/Aboutus6.png') }} alt="" class="mb-4 w-64 h-48">
                 <img src={{ asset('img/Aboutus5.png') }} alt="" class="mb-4 w-64 h-48">
                 <img src={{ asset('img/Aboutus2.png') }} alt="" class="mb-4 w-64 h-48">
+                <img src={{ asset('img/Menu_makanan.png') }} alt="" class="mb-4 w-64 h-48">
             </div>
         </div>
     </div>

@@ -70,7 +70,5 @@ Route::prefix('admin')->group(function () {
     Route::post('/aboutUs/update', [AdminAboutUsController::class, 'update'])->name('admin.aboutUs.update');
 });
 
-
-
-
+Route::get('/about', [AboutusController::class, 'index'])->name('aboutus');
 
