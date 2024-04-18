@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Address;
 use App\Models\User;
 use App\Models\Order;
+use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -15,6 +17,22 @@ class OrderController extends Controller
         ]);
     }
 
+    // controller detail order
+    public function detailOrder($id){
+        $detailOrder = OrderDetail::where('order_id',$id)->get();
+        $getUser = Order::findOrFail($id);
+        
+
+        $user = Address::where('user_id',$getUser->user_id)->first();
+
+        return view('admin.detailOrder',[
+            'detailOrder' => $detailOrder,
+            'users' => $user,
+            'order' => $getUser
+        ]);
+    }
+
+// controller status order
     public function updateStatusOrder(Request $request,$id){
         $order = Order::findOrFail($id);
 
@@ -24,8 +42,6 @@ class OrderController extends Controller
 
         return redirect()->back()->with('success', 'status berhasil di ubah');
     }
-
-   
 
    
 }
