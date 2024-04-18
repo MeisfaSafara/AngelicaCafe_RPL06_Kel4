@@ -18,6 +18,8 @@ return new class extends Migration
             $table->integer('quantity');
             $table->decimal('price', 10, 2);
             $table->timestamps();
+
+            // mendefinisikan indeks atau foreign keys sesuai kebutuhan
             $table->foreign('order_id')->references('id')->on('orders');
             $table->foreign('product_id')->references('id_produk')->on('produks');
         });

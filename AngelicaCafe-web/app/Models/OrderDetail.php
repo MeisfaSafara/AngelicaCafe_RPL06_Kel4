@@ -19,11 +19,13 @@ class OrderDetail extends Model
         'price',
     ];
 
+// relasi dengan model Order
     public function order()
     {
         return $this->belongsTo(Order::class, 'order_id');
     }
 
+// relasi dengan model Product 
     public function product()
     {
         return $this->belongsTo(Produk::class, 'product_id');

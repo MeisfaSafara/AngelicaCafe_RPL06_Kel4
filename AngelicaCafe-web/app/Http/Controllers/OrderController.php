@@ -17,6 +17,7 @@ class OrderController extends Controller
         ]);
     }
 
+    // controller detail order
     public function detailOrder($id){
         $detailOrder = OrderDetail::where('order_id',$id)->get();
         $getUser = Order::findOrFail($id);
@@ -31,6 +32,7 @@ class OrderController extends Controller
         ]);
     }
 
+// controller status order
     public function updateStatusOrder(Request $request,$id){
         $order = Order::findOrFail($id);
 
