@@ -13,6 +13,5 @@ class AboutusController extends Controller {
         return view('about',[
             'about' => $aboutUs
         ]);
-    }
-
+    }  
 }
