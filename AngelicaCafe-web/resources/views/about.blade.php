@@ -37,11 +37,11 @@
                 <h1 class="font-bold text-lg md:text-xl">Our Story</h1>
                 <img class="h-3" src={{ asset('img/garisAboutUs.png') }} alt="">
             </div>
-            <img src={{ asset('/img/AngelicaCatering.png') }} alt="" class="mb-4">
+            <img src={{ asset('/img/AngelicaCatering.png') }} alt="" class="mb-0">
             <div class="container mx-auto">
                 @section('content')
                 <div class="container">
-                    <div class="py-8">
+                    <div class="py-2" style="text-align: justify;">
                         {{$about->content}}
                     </div>
                 </div>
