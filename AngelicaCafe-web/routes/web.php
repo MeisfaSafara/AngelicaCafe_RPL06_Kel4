@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\AdminAboutUsController;
+use App\Http\Controllers\UserController;
 
 
 /*
@@ -59,6 +60,10 @@ Route::get('/profile', function () {
 Route::post('/login',[AuthController::class, 'login'])->name('login');
 Route::post('/signup',[AuthController::class, 'register'])->name('register');
 Route::get('/cekUser',[AuthController::class, 'cekUser'])->name('cekuser');
+
+Route::get('/profile', [UserController::class, 'profile'])->name('profile.user');
+Route::put('/profile/update', [UserController::class, 'profileUpdate'])->name('profile.update');
+Route::put('/profile/update-profile-picture', [UserController::class, 'updateProfilePicture'])->name('profile.update-profile-picture');
 
 Route::get('orders',[OrderController::class,'index'])->name('admin.orders.indes');
 Route::get('orders/detail/{id}',[OrderController::class,'detailOrder'])->name('admin.orders.detail');
