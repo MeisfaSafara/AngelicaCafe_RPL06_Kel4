@@ -63,8 +63,8 @@ class AuthController extends Controller
                 return redirect('/admin');
             } else {
                 // Jika id_role bukan 2, alihkan ke halaman profile
-                // return redirect('/profile');
-                return "Login Berhasil";
+                return redirect('/profile');
+                // return "Login Berhasil";
             }
         } else {
             return redirect()->back()->with('failed', 'Login gagal silahkan cek ulang');
