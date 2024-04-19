@@ -25,4 +25,10 @@ class ReviewController extends Controller
 
         return redirect()->back()->with('success', 'Review berhasil ditambahkan!');
     }
+
+    public function adminReview()
+    {
+        $review = Review::all();
+        return view('admin.review', ['review' => $review]);
+    }
 }

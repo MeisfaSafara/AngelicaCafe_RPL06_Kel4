@@ -1,46 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reviews</title>
-    <!-- Tambahkan link CSS Tailwind -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-</head>
-<body class="bg-gray-100">
-    
-    <div class="container mx-auto p-8">
-        <h1 class="text-3xl font-bold mb-8">Reviews</h1>
-        
-        <button id="showReviewForm" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-8 transition duration-300 ease-in-out transform hover:scale-105">
-            Tambah Review
-        </button>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
-        <form id="reviewForm" class="hidden mb-8 bg-white rounded shadow-md p-4" action="{{ route('review.store') }}" method="POST">
-            @csrf
-            <textarea name="review" id="review" class="w-full border border-gray-300 rounded py-2 px-3 mb-4" placeholder="Tulis review Anda di sini..."></textarea>
-            <button type="submit" id="submitReview" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Kirim</button>
-        </form>
-        
-        @if($latestReview)
-            <div class="border border-gray-300 p-4 mb-8 rounded">
-                <p>{{ $latestReview->review }}</p>
-                @if($latestReview->created_at)
-                    <small class="text-gray-500">{{ $latestReview->created_at->diffForHumans() }}</small>
-                @endif
+    {{-- DaisyUI --}}
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.19/dist/full.min.css" rel="stylesheet" type="text/css" />
+    {{-- DaisyUI --}}
+
+    <title>Document</title>
+
+    <style>
+        .gambar {
+            /* background-image: url({{ url('/img/MenuBackground.png') }}); */
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body data-theme="cupcake">
+    {{-- NAVBAR --}}
+    @include('layout.navbar')
+    {{-- NAVBAR --}}
+
+    {{-- OUR MENU --}}
+
+    {{-- Content --}}
+    <div class="min-h-screen flex items-center justify-center">
+        <div class="bg-white p-8 rounded-lg shadow-md w-96">
+            <h1 class="text-2xl font-semibold mb-4">Add Review</h1>
+            @if ($errors->any())
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                <strong class="font-bold">Terjadi kesalahan validasi!</strong>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
             </div>
-        @endif
+            @endif
+            <form action="{{ route('review.store') }}" method="POST">
+                @csrf
+                @method('POST')
+                <div class="mb-4">
+                    <label for="review" class="block text-sm font-medium text-gray-700">Comment</label>
+                    <textarea name="review" id="review" cols="30" rows="5"
+                        class="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500"
+                        placeholder="Write your review here..."></textarea>
+                </div>
+                @if($latestReview)
+                <div class="mb-4">
+                    <label for="last_review" class="block text-sm font-medium text-gray-700">Your Last Review</label>
+                    <div class="border border-gray-300 p-4 rounded">
+                        <p>{{ $latestReview->review }}</p>
+                        @if($latestReview->created_at)
+                        <small class="text-gray-500">{{ $latestReview->created_at->diffForHumans() }}</small>
+                        @endif
+                    </div>
+                </div>
+                @endif
+                <div class="mt-4 flex justify-end">
+                    <button type="submit"
+                        class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Save</button>
+                    <!-- <a href="#"
+                        class="ml-2 text-gray-500 hover:text-gray-700 px-4 py-2 rounded-md border border-gray-300">Cancel</a> -->
+                </div>
+            </form>
+        </div>
     </div>
 
-    <script>
-        document.getElementById('showReviewForm').addEventListener('click', function() {
-            document.getElementById('reviewForm').classList.toggle('hidden');
-        });
 
-        document.getElementById('submitReview').addEventListener('click', function() {
-            document.getElementById('showReviewForm').disabled = true;
-        });
-    </script>
-    
+    {{-- End Content --}}
+    {{-- FOOTER --}}
+    @include('layout.footer');
+    {{-- FOOTER --}}
 </body>
+
 </html>
