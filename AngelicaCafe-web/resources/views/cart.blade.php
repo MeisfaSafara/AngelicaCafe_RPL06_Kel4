@@ -39,7 +39,7 @@ $cartData = json_encode($cartData);
     {{-- @include('layout.navbar') --}}
 
     <div class="flex bg-[#EDDBC7] h-20 w-full justify-center px-3 fixed z-30 items-center">
-        <img class="h-[80%] my-auto" src="" alt="">
+        <img class="h-[80%] my-auto" src={{ asset('/img/Logo.png') }} alt="">
     </div>
 
     {{-- NAVBAR --}}
@@ -58,7 +58,7 @@ $cartData = json_encode($cartData);
                 <template x-for="data,index in dataCart" :key="index">
                     <div class="flex w-full gap-6 justify-between items-center">
                         <div class="flex gap-3 items-center">
-                            <img class="h-32 w-32" :src="" alt="">
+                            <img class="h-32 w-32" :src="`{{ asset('storage/img/produk') }}/${data.image}`" alt="">
                             <h1 class="font-bold text-xl" x-text="data.name"></h1>
                         </div>
                         <div class="flex items-center gap-2">

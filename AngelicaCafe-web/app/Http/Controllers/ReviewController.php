@@ -9,8 +9,8 @@ class ReviewController extends Controller
 {
     public function index()
     {
-        $review = Review::all();
-        return view('review.index', ['review' => $review]);
+        $latestReview = Review::latest()->first();
+        return view('review.index', compact('latestReview'));
     }
 
     public function store(Request $request)
@@ -24,5 +24,11 @@ class ReviewController extends Controller
         ]);
 
         return redirect()->back()->with('success', 'Review berhasil ditambahkan!');
+    }
+
+    public function adminReview()
+    {
+        $review = Review::all();
+        return view('admin.review', ['review' => $review]);
     }
 }

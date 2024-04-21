@@ -41,6 +41,7 @@ class AuthController extends Controller
 
         ]);
 
+
         return redirect('/login')->with('success','Akun anda berhasil didaftarkan silahkan login');
 
 
@@ -63,6 +64,7 @@ class AuthController extends Controller
             } else {
                 // Jika id_role bukan 2, alihkan ke halaman profile
                 return redirect('/profile');
+                // return "Login Berhasil";
             }
         } else {
             return redirect()->back()->with('failed', 'Login gagal silahkan cek ulang');
