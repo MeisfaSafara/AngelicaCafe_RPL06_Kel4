@@ -61,10 +61,21 @@ Route::post('/login',[AuthController::class, 'login'])->name('login');
 Route::post('/signup',[AuthController::class, 'register'])->name('register');
 Route::get('/cekUser',[AuthController::class, 'cekUser'])->name('cekuser');
 
+
 Route::get('/profile', [UserController::class, 'profile'])->name('profile.user');
 Route::put('/profile/update', [UserController::class, 'profileUpdate'])->name('profile.update');
 Route::put('/profile/update-profile-picture', [UserController::class, 'updateProfilePicture'])->name('profile.update-profile-picture');
 
+//route konfigurasi products
+Route::get('produks', [ProdukController::class, 'index']);
+Route::get('produks/create', [ProdukController::class, 'create'])->name('admin.produks.create');;
+Route::post('produks/store', [ProdukController::class, 'store'])->name('admin.produks.store');
+Route::get('produks/update/{id}', [ProdukController::class, 'edit']);
+Route::put('produks/update/{id}', [ProdukController::class, 'update'])->name('admin.produks.update');
+Route::delete('produks/delete/{id}',[ProdukController::class, 'delete'])->name('admin.produks.delete');
+
+Route::get('orders',[OrderController::class,'index'])->name('admin.orders.indes');
+Route::put('orders/status/update/{id}',[OrderController::class,'updateStatusOrder'])->name('admin.orders.update.status');
 Route::get('orders',[OrderController::class,'index'])->name('admin.orders.indes');
 Route::get('orders/detail/{id}',[OrderController::class,'detailOrder'])->name('admin.orders.detail');
 Route::put('orders/status/update/{id}',[OrderController::class,'updateStatusOrder'])->name('admin.orders.update.status');
@@ -83,3 +94,4 @@ Route::prefix('admin')->group(function () {
 Route::get('/about', [AboutusController::class, 'index'])->name('aboutus');
 
 Route::get('/admin/review', [ReviewController::class, 'adminReview']);
+
