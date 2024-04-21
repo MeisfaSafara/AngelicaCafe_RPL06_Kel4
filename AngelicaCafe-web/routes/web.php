@@ -64,10 +64,6 @@ Route::get('/cekUser',[AuthController::class, 'cekUser'])->name('cekuser');
 Route::get('/profile', [UserController::class, 'profile'])->name('profile.user');
 Route::put('/profile/update', [UserController::class, 'profileUpdate'])->name('profile.update');
 Route::put('/profile/update-profile-picture', [UserController::class, 'updateProfilePicture'])->name('profile.update-profile-picture');
-
-Route::get('orders',[OrderController::class,'index'])->name('admin.orders.indes');
-Route::get('orders/detail/{id}',[OrderController::class,'detailOrder'])->name('admin.orders.detail');
-Route::put('orders/status/update/{id}',[OrderController::class,'updateStatusOrder'])->name('admin.orders.update.status');
 Route::get('/review',[ReviewController::class,'index']);
 Route::post('/review/store',[ReviewController::class,'store'])->name('review.store');
 
