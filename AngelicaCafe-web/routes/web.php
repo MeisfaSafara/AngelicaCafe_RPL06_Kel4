@@ -74,6 +74,10 @@ Route::post('/review/store',[ReviewController::class,'store'])->name('review.sto
 Route::prefix('admin')->group(function () {
     Route::get('/aboutUs/edit', [AdminAboutUsController::class, 'edit'])->name('admin.aboutUs.edit');
     Route::post('/aboutUs/update', [AdminAboutUsController::class, 'update'])->name('admin.aboutUs.update');
+    // route order admin
+    Route::get('orders',[OrderController::class,'index'])->name('admin.orders.indes');
+    Route::get('orders/detail/{id}',[OrderController::class,'detailOrder'])->name('admin.orders.detail');
+    Route::put('orders/status/update/{id}',[OrderController::class,'updateStatusOrder'])->name('admin.orders.update.status');
 });
 
 Route::get('/about', [AboutusController::class, 'index'])->name('aboutus');
