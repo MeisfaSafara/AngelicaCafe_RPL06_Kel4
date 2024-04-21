@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -109,7 +108,7 @@
                     </div>
                 </div>
                               
-                
+                <!-- CHANGE PHOTO PROFILE -->
                 {{-- <div class="w-[20%] h-full flex">
                     <div class="border-2 w-full h-full py-4 rounded-xl flex flex-col gap-3 justify-center items-center">
                         <img class="h-32" src="{{ asset('/img/profilepicture.png') }}" alt="">
@@ -126,5 +125,7 @@
 
     
 </body>
+
+
 
 </html>

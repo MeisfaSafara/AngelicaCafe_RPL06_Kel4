@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Address;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
+    // Profile
     public function profile(){
         $user = Auth::user();
         
@@ -47,7 +49,7 @@ class UserController extends Controller
         
 
     }
-
+    // Update Profile Picture
     public function updateProfilePicture(Request $request){
 
         $request->validate([
