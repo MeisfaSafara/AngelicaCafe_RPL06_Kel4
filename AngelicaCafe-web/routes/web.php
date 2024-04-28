@@ -7,6 +7,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\AdminAboutUsController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CartController; 
 
 
 /*
@@ -44,6 +45,10 @@ Route::get('/about',[AboutusController::class, 'index'])->name('aboutus');
 
 Route::get('/cart', function () {
     return view('cart');
+});
+
+Route::get('/checkout', function () {
+    return view('checkout');
 });
 
 Route::get('/admin', function () {
