@@ -49,28 +49,35 @@
                     search
                 </span></button>
         </form>
-        <ul class="mx-auto flex gap-4 font-bold mb-[2em]">
-            <li><a href="">Nasi Kotak</a></li>
-            <li><a href="">Snack Box</a></li>
-            <li><a href="">Coffee Break</a></li>
-            <li><a href="">Lainnya</a></li>
+        <ul class="flex flex-wrap items-start justify-center p-5 font-bold pb-4">
+            @foreach($kategoris as $kategori)
+            <li>
+                <a class="relative px-3 py-1 m-2 rounded-md shadow-sm sm:py-2 sm:text-base ring ring-transparent group md:px-4 hover:ring hover:ring-opacity-50 focus:ring-opacity-50 hover:ring-blue-600 text-white bg-gray-900 dark:bg-gray-800 dark:text-gray-200" href="{{ route('menu.index', $kategori->id_kategori) }}">
+                    {{ $kategori->nama_kategori }}
+                </a>
+            </li>
+            @endforeach
         </ul>
+
         <div class="w-full flex flex-wrap gap-3 mt-3 justify-center mb-8">
-            @for ($i = 0; $i < 8; $i++)
+            @foreach ($produk as $item)
                 <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5">
                     <div class="card card-compact w-full bg-base-100 shadow-xl">
-                        <figure><img class="object-cover" src={{ asset('/img/Menu_makanan.png') }} alt="Shoes" />
+                        <figure><img class="object-cover" src="{{ asset('storage/img/produk/'.$item->gambar) }}"  alt="Shoes" />
+                            <div class="absolute top-[10px] right-[15px]">
+                                <h1 class="py-2 text-semibold px-3 bg-white text-gray-400 rounded-xl">{{$item->harga}}</h1>
+                            </div>
                         </figure>
                         <div class="card-body">
-                            <h2 class="card-title">Nasi Kotak </h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                            <h2 class="card-title">{{$item->nama_Produk}}</h2>
+                            <p>{{$item->deskripsi}}</p>
                             <div class="card-actions justify-end">
-                                <button class="btn text-white bg-[#764507]">Add to cart</button>
+                                <a class="btn text-white bg-[#764507]" href="">Add to cart</a>
                             </div>
                         </div>
                     </div>
                 </div>
-            @endfor
+            @endforeach
         </div>
         <ul class="text-black">
             <li>
