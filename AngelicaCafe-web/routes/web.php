@@ -49,6 +49,8 @@ Route::get('/about',[AboutusController::class, 'index'])->name('aboutus');
 Route::get('/menu', [MenuController::class, 'index'])->name('menu');
 Route::get('/',[MenuController::class, 'menuUser'])->name('menuUser');
 Route::get('/menu/{id?}', [MenuController::class, 'index'])->name('menu.index');
+Route::get('/menu/{id}/detail', 'MenuController@showDetail')->name('menu.detail');
+
 Route::get('/cart', function () {
     return view('cart');
 });

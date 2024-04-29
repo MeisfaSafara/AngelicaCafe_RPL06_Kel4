@@ -35,4 +35,11 @@ class MenuController extends Controller
         ]);
     }
 
+    public function showDetail($id)
+        {
+        $produk = Produk::findOrFail($id);
+    
+        return view('menu.detail', ['produk' => $produk]);
+    }
+
 }
