@@ -9,6 +9,7 @@ use App\Http\Controllers\AdminAboutUsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CartController; 
 use App\Http\Controllers\ProdukController; 
+use App\Http\Controllers\MenuController; 
 
 
 /*
@@ -44,6 +45,8 @@ Route::get('/signup', function () {
 // controll database about us
 Route::get('/about',[AboutusController::class, 'index'])->name('aboutus');
 
+// controll database menu
+Route::get('/menu', [MenuController::class, 'index'])->name('menu');
 Route::get('/cart', function () {
     return view('cart');
 });
