@@ -101,5 +101,4 @@ Route::prefix('admin')->group(function () {
 });
 
 Route::get('/about', [AboutusController::class, 'index'])->name('aboutus');
-
-Route::get('/admin/review', [ReviewController::class, 'adminReview']);  
+Route::get('/admin/review', [ReviewController::class, 'adminReview']); 

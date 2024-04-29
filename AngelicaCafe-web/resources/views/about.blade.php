@@ -23,6 +23,7 @@
     {{-- NAVBAR --}}
     @include('layout.navbar')
     {{-- NAVBAR --}}
+
     <div class="w-full h-[20em] flex flex-col items-center justify-center"
         style="background-image: url({{ url('/img/aboutUs.png') }}); background-size: cover">
         <h1 class="text-4xl font-bold text-white mb-4">About Us</h1>
@@ -65,6 +66,38 @@
 
     {{-- FOOTER --}}
     @include('layout.footer')
+
+    @extends('layouts.app')
+
+    @section('content')
+        <!-- Konten halaman About Us di sini -->
+
+        <!-- WhatsApp Floating Button Script -->
+        <script>
+            // Periksa apakah URL saat ini adalah halaman About Us
+            if (window.location.pathname === '/about') {
+                var script = document.createElement('script');
+                script.src = 'https://sleekflow.io/whatsapp-button.js';
+                script.async = true;
+                script.onload = function() {
+                    whatsappButton({
+                        buttonName:'Hubungi Kami',
+                        buttonIconSize: '22',
+                        buttonMargin:'true',
+                        brandName:'Angelica Cafe',
+                        brandSubtitleText:'All rights reserved',
+                        buttonSize:'medium',
+                        buttonPosition:'right',
+                        callToAction:'Mulai Chat',
+                        phoneNumber:'6282121716511',
+                        welcomeMessage:'Halo 👋\nAda yang bisa kami bantu?',
+                        prefillMessage:'Tentu, Saya akan memesanya',
+                    });
+                };
+                document.body.appendChild(script);
+            }
+        </script>
+    @endsection
 
 </body>
 
