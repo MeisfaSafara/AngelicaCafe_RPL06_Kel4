@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
-    // Profile
     public function profile(){
         $user = Auth::user();
         
@@ -49,7 +48,65 @@ class UserController extends Controller
         
 
     }
-    // Update Profile Picture
+
+    public function showAddress(){
+        $user = auth()->user();
+        $addresses = Address::with('user')
+        ->where('user_id', $user->id)
+        ->get();
+
+        return view('profile.address', [
+            'addresses' => $addresses
+        ]);
+    }
+
+
+    public function editAddress($id){
+        $address = Address::findOrFail($id);
+        $user = auth()->user();
+
+
+        if($user->id !== $address->user_id){
+            return 'jangan iseng bro';
+        }
+
+        return view('profile.editAddress',[
+            'address' => $address
+        ]);
+    }
+
+    public function updateAddress(Request $request,$id){
+        $address = Address::findOrFail($id);
+        $address->update($request->all());
+
+        return redirect()->route('address.index')->with('success', 'Produk berhasil diperbarui!');
+    }
+
+    public function addAddress(){
+        return view('profile.addAddress');
+    }
+
+    public function storeAddress(Request $request){
+        $request->validate([
+            'street' => 'required|string|max:255',
+            'city' => 'required|string|max:255',
+            'state' => 'required|string|max:255',
+            'postal_code' => 'required|string|max:10',
+        ]);
+
+        $user = auth()->user();
+
+        $address = Address::create([
+            'user_id' => $user->id,
+            'street' => $request->street,
+            'city' => $request->city,
+            'state' => $request->state,
+            'postal_code' => $request->postal_code
+        ]);
+
+        return redirect()->route('address.index')->with('success', 'Address berhasil ditambah!');
+    }
+
     public function updateProfilePicture(Request $request){
 
         $request->validate([
