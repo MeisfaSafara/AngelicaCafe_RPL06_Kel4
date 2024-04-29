@@ -8,6 +8,7 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\AdminAboutUsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CartController; 
+use App\Http\Controllers\ProdukController; 
 
 
 /*
@@ -68,11 +69,17 @@ Route::get('/cekUser',[AuthController::class, 'cekUser'])->name('cekuser');
 
 Route::get('/profile', [UserController::class, 'profile'])->name('profile.user');
 Route::put('/profile/update', [UserController::class, 'profileUpdate'])->name('profile.update');
+Route::get('/profile/address', [UserController::class,'showAddress'])->name('address.index');
+Route::get('/profile/address/edit/{id}', [UserController::class,'editAddress'])->name('address.edit');
+Route::put('/profile/address/edit/{id}', [UserController::class,'updateAddress'])->name('address.update');
+Route::get('/profile/address/add', [UserController::class,'addAddress'])->name('address.add');
+Route::post('/profile/address/add', [UserController::class,'storeAddress'])->name('storeAddress');
 Route::put('/profile/update-profile-picture', [UserController::class, 'updateProfilePicture'])->name('profile.update-profile-picture');
 Route::get('/review',[ReviewController::class,'index']);
 Route::post('/review/store',[ReviewController::class,'store'])->name('review.store');
 
 Route::prefix('admin')->group(function () {
+    // route about us
     Route::get('/aboutUs/edit', [AdminAboutUsController::class, 'edit'])->name('admin.aboutUs.edit');
     Route::post('/aboutUs/update', [AdminAboutUsController::class, 'update'])->name('admin.aboutUs.update');
     // route order admin
