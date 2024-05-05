@@ -50,6 +50,7 @@
                 </span></button>
         </form>
         <ul class="flex flex-wrap items-start justify-center p-5 font-bold pb-4">
+        <li><a href="/menu" class="relative px-3 py-1 m-2 rounded-md shadow-sm sm:py-2 sm:text-base ring ring-transparent group md:px-4 hover:ring hover:ring-opacity-50 focus:ring-opacity-50 hover:ring-blue-600 text-white bg-gray-900 dark:bg-gray-800 dark:text-gray-200">All Menu</a></li>
             @foreach($kategoris as $kategori)
             <li>
                 <a class="relative px-3 py-1 m-2 rounded-md shadow-sm sm:py-2 sm:text-base ring ring-transparent group md:px-4 hover:ring hover:ring-opacity-50 focus:ring-opacity-50 hover:ring-blue-600 text-white bg-gray-900 dark:bg-gray-800 dark:text-gray-200" href="{{ route('menu.index', $kategori->id_kategori) }}">

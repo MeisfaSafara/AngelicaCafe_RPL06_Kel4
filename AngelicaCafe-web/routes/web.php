@@ -10,6 +10,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CartController; 
 use App\Http\Controllers\ProdukController; 
 use App\Http\Controllers\MenuController; 
+use App\Http\Controllers\CategoryController; 
 use App\Http\Controllers\ReservationController;
 
 
@@ -111,6 +112,10 @@ Route::prefix('admin')->group(function () {
     Route::get('produks/update/{id}', [ProdukController::class, 'edit']);
     Route::put('produks/update/{id}', [ProdukController::class, 'update'])->name('admin.produks.update');
     Route::delete('produks/delete/{id}',[ProdukController::class, 'delete'])->name('admin.produks.delete');
+    //Category
+    Route::get('category', [CategoryController::class, 'index'])->name('admin.category');
+    Route::get('category/create', [CategoryController::class, 'create'])->name('admin.category.create');
+    Route::post('category/store', [CategoryController::class, 'store'])->name('admin.category.store');
 });
 
 Route::get('/about', [AboutusController::class, 'index'])->name('aboutus');
