@@ -5,7 +5,7 @@
         <li><a href="/menu" class="font-bold text-[#85581F]">Menu</a></li>
         <li><a href="/about" class="font-bold text-[#85581F]">About Us</a></li>
         <li><a href="/contact" class="font-bold text-[#85581F]">Contact</a></li>
-        <li><a href="/reservasi" class="font-bold text-[#85581F]">Reservasi</a></li>
+        <li><a href="/reservation" class="font-bold text-[#85581F]">Reservasi</a></li>
 
     </ul>
 

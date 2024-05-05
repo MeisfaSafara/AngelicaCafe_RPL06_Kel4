@@ -10,6 +10,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CartController; 
 use App\Http\Controllers\ProdukController; 
 use App\Http\Controllers\MenuController; 
+use App\Http\Controllers\ReservationController;
+
 
 
 /*
@@ -42,6 +44,16 @@ Route::get('/forgot', function () {
 Route::get('/signup', function () {
     return view('/auth/signup');
 });
+Route::get('/reservation', function () {
+    return view('reservations.step-one');
+});
+
+
+Route::get('/reservation/step-one', [ReservationController::class, 'stepOne'])->name('reservations.step-one');
+Route::post('/reservation/step-one', [ReservationController::class, 'storeStepOne'])->name('reservations.store.step-one');
+Route::get('/reservation/step-two', [ReservationController::class, 'stepTwo'])->name('reservations.step-two');
+Route::post('/reservation/step-two', [ReservationController::class, 'storeStepTwo'])->name('reservations.store.step-two');
+
 // controll database about us
 Route::get('/about',[AboutusController::class, 'index'])->name('aboutus');
 
