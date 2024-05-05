@@ -8,12 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Reservation extends Model
 {
     use HasFactory;
-    protected $fillable = ['res_date'];
 
     // Accessor untuk memformat tanggal
-    public function getFormattedResDateAttribute()
-    {
-        return $this->res_date ? $this->res_date->format('Y-m-d') : '';
-    }
+    protected $fillable = [
+        'first_name', 
+        'email', 
+        'tel_number', 
+        'res_date', 
+        'start_time', 
+        'end_time', 
+        'guest_number'
+    ];
 
 }
