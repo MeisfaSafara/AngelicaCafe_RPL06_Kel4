@@ -44,14 +44,14 @@
                             <form method="POST" action="{{ route('reservations.store.step-one') }}">
                                 @csrf
                                 <div class="sm:col-span-6">
-                                    <label for="first_name" class="block text-sm font-medium text-gray-700"> Name Reservation
+                                    <label for="name" class="block text-sm font-medium text-gray-700"> Name Reservation
                                     </label>
                                     <div class="mt-1">
-                                        <input type="text" id="first_name" name="first_name"
-                                            value="{{ $reservation->first_name ?? '' }}"
+                                        <input type="text" id="name" name="name"
+                                            value="{{ $reservation->name ?? '' }}"
                                             class="block w-full appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                                     </div>
-                                    @error('first_name')
+                                    @error('name')
                                         <div class="text-sm text-red-400">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -86,6 +86,32 @@
                                         class="block w-full appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                                     @error('res_date')
                                     <p class="text-sm text-red-600">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <div class="sm:col-span-6">
+                                    <label for="start_time" class="block text-sm font-medium text-gray-700">Start Time</label>
+                                    <div class="mt-1">
+                                        <input type="time" id="start_time" name="start_time"
+                                            value="{{ $reservation->start_time ?? '' }}"
+                                            min="09:00" max="23:30" step="1800" 
+                                            class="block w-full appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                    </div>
+                                    @error('start_time')
+                                        <div class="text-sm text-red-400">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="sm:col-span-6">
+                                    <label for="end_time" class="block text-sm font-medium text-gray-700">End Time</label>
+                                    <div class="mt-1">
+                                        <input type="time" id="end_time" name="end_time"
+                                            value="{{ $reservation->end_time ?? '' }}"
+                                            min="09:00" max="23:30" step="1800" 
+                                            class="block w-full appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                    </div>
+                                    @error('end_time')
+                                        <div class="text-sm text-red-400">{{ $message }}</div>
                                     @enderror
                                 </div>
 
