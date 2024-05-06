@@ -11,9 +11,10 @@ class ProdukController extends Controller
 {
     public function index(){
         $produk = Produk::all();
+    
 
         return view('admin.produks',[
-            'produks' => $produk
+            'produks' => $produk,
         ]);
     }
 
