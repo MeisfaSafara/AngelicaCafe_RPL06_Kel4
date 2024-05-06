@@ -43,6 +43,7 @@ class ProdukController extends Controller
             $extension = $file->getClientOriginalExtension(); // Mendapatkan ekstensi file
             $gambarPath = $file->storeAs('public/img/produk', $validatedData['nama_Produk'] . '.' . $extension); // Menyimpan gambar dengan nama yang sesuai dengan nama produk
     
+            
             // Menyimpan nama gambar ke dalam database
             $gambarName = $validatedData['nama_Produk'] . '.' . $extension;
         } else {
@@ -50,7 +51,7 @@ class ProdukController extends Controller
             $gambarName = 'default.jpg'; // Ganti dengan nama default gambar yang sesuai
         }
     
-        // Membuat produk baru dengan data yang sudah divalidasi dan nama gambar
+        /// Membuat produk baru dengan data yang sudah divalidasi dan nama gambar
         $produk = Produk::create([
             'nama_Produk' => $validatedData['nama_Produk'],
             'deskripsi' => $validatedData['deskripsi'],
