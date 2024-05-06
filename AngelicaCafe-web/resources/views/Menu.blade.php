@@ -42,36 +42,71 @@
     {{-- OUR MENU --}}
 
     <div class="flex flex-col justify-center w-full mt-[3em]">
-        <form action="" class="flex justify-center items-center gap-2 mb-4">
-            <input type="text" class="w-[20vw] px-2 py-1 rounded-lg border-2 border-[#85581F] ">
-            <button class=""> <span
-                    class="material-symbols-outlined font-bold bg-[#EDDBC7] border-2 border-[#85581F] p-2 rounded-full">
-                    search
-                </span></button>
-        </form>
-        <ul class="flex flex-wrap items-start justify-center p-5 font-bold pb-4">
-        <li><a href="/menu" class="relative px-3 py-1 m-2 rounded-md shadow-sm sm:py-2 sm:text-base ring ring-transparent group md:px-4 hover:ring hover:ring-opacity-50 focus:ring-opacity-50 hover:ring-blue-600 text-white bg-gray-900 dark:bg-gray-800 dark:text-gray-200">All Menu</a></li>
-            @foreach($kategoris as $kategori)
-            <li>
-                <a class="relative px-3 py-1 m-2 rounded-md shadow-sm sm:py-2 sm:text-base ring ring-transparent group md:px-4 hover:ring hover:ring-opacity-50 focus:ring-opacity-50 hover:ring-blue-600 text-white bg-gray-900 dark:bg-gray-800 dark:text-gray-200" href="{{ route('menu.index', $kategori->id_kategori) }}">
-                    {{ $kategori->nama_kategori }}
-                </a>
-            </li>
-            @endforeach
-        </ul>
+        <div class="flex">
+            <div class="bg-[#D1BAA4] text-[#3E2E27] w-[30%] top-[60%] px-4 pt-2 rounded-xl right-[65%] absolute">
+                <h1 class="font-semibold text-center text-xl">Filter</h1>
+                <form action="/filter" class="my-4" method="GET">
+                    <div class="flex flex-row justify-between">
+                        <div class="flex gap-2">
+                            <input type="checkbox" name="filters[]" class="checkbox border-[#3E2E27] border-2"
+                                value="cheap">
+                            <p>Murah</p>
+                        </div>
+                        <div class="flex gap-2">
+                            <input type="checkbox" name="filters[]" class="checkbox border-[#3E2E27] border-2"
+                                value="medium">
+                            <p>Medium</p>
+                        </div>
+                        <div class="flex gap-2">
+                            <input type="checkbox" name="filters[]" class="checkbox border-[#3E2E27] border-2"
+                                value="expensive">
+                            <p>Mahal</p>
+                        </div>
+                    </div>
+                    <div class="flex justify-center">
+                        <button type="submit"
+                            class="py-2 px-2 rounded font-bold text-white mt-3 cursor-pointer bg-[#B08968]">Terapkan</button>
+                    </div>
+                </form>
+            </div>
+
+
+            <div class="flex flex-col justify-center items-center w-full">
+                <form action="/search-input" method="GET" class="flex justify-center items-center gap-2 mb-4">
+                    <input type="text" name="search" id="search-input"
+                        class="w-[20vw] px-2 py-1 rounded-lg border-2 border-[#85581F] ">
+                    <button class=""> <span
+                            class="material-symbols-outlined font-bold bg-[#EDDBC7] border-2 border-[#85581F] p-2 rounded-full">
+                            search
+                        </span></button>
+                </form>
+                <ul class="flex flex-wrap items-start justify-center p-5 font-bold pb-4">
+                    @foreach ($kategoris as $kategori)
+                        <li>
+                            <a class="relative px-3 py-1 m-2 rounded-md shadow-sm sm:py-2 sm:text-base ring ring-transparent group md:px-4 hover:ring hover:ring-opacity-50 focus:ring-opacity-50 hover:ring-blue-600 text-white bg-gray-900 dark:bg-gray-800 dark:text-gray-200"
+                                href="{{ route('menu.index', $kategori->id_kategori) }}">
+                                {{ $kategori->nama_kategori }}
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
 
         <div class="w-full flex flex-wrap gap-3 mt-3 justify-center mb-8">
             @foreach ($produk as $item)
                 <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5">
                     <div class="card card-compact w-full bg-base-100 shadow-xl">
-                        <figure><img class="object-cover" src="{{ asset('storage/img/produk/'.$item->gambar) }}"  alt="Shoes" />
+                        <figure><img class="object-cover" src="../../storage/app/public/img/produk/Bubur.png"
+                                alt="Shoes" />
                             <div class="absolute top-[10px] right-[15px]">
-                                <h1 class="py-2 text-semibold px-3 bg-white text-gray-400 rounded-xl">{{$item->harga}}</h1>
+                                <h1 class="py-2 text-semibold px-3 bg-white text-gray-400 rounded-xl">
+                                    {{ $item->harga }}</h1>
                             </div>
                         </figure>
                         <div class="card-body">
-                            <h2 class="card-title">{{$item->nama_Produk}}</h2>
-                            <p>{{$item->deskripsi}}</p>
+                            <h2 class="card-title">{{ $item->nama_Produk }}</h2>
+                            <p>{{ $item->deskripsi }}</p>
                             <div class="card-actions justify-end">
                                 <a class="btn text-white bg-[#764507]" href="">Add to cart</a>
                             </div>
@@ -80,20 +115,6 @@
                 </div>
             @endforeach
         </div>
-        <ul class="text-black">
-            <li>
-                <p>1</p>
-            </li>
-            <li>
-                <p>1</p>
-            </li>
-            <li>
-                <p>1</p>
-            </li>
-            <li>
-                <p>1</p>
-            </li>
-        </ul>
     </div>
 
     {{-- OUR MENU --}}
@@ -104,8 +125,6 @@
     {{-- FOOTER --}}
     </div>
     @include('layout.footer')
-
-
 
 
 </body>
