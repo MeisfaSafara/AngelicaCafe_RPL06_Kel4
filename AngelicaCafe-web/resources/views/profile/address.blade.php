@@ -74,7 +74,13 @@
                                 <p class="text-gray-400">{{ $address->user->phone }}</p>
                                 <p class="text-gray-400">{{ $address->street }}, {{ $address->city }}, {{ $address->state }} {{ $address->postal_code }}</p>
                                 <div class="flex gap-3">
-                                    <a class="text-[#D30606]" href="{{ route('address.edit', $address->id) }}">Change Address</a>
+                                    <a class="text-[#D30606] font-medium" href="{{ route('address.edit', $address->id) }}">Change Address</a>
+                                    <!-- Remove Address -->
+                                    <form action="{{ route('address.delete', $address->id) }}" method="POST">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button type="submit" class="font-medium text-red-600 hover:underline">Delete</button>
+                                    </form>                                  
                                 </div>
                             </div>
                         @endforeach
@@ -90,7 +96,6 @@
                         <div class="flex gap-3">
                             <a class="text-[#D30606]" href="">Change Address</a>
                             <p class="text-gray-400">|</p>
-                            <a class="text-[#D30606]" href="">Delete</a>
                         </div>
                     </div>
                 </div>
