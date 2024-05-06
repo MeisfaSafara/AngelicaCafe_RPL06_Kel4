@@ -10,7 +10,6 @@
     </ul>
 
     <div class="flex items-center gap-3">
-        <input type="text" class="search-input" placeholder="Search...">
         
         @if (Auth::check())
             <a href="/profile">
