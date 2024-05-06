@@ -81,6 +81,7 @@
                         </span></button>
                 </form>
                 <ul class="flex flex-wrap items-start justify-center p-5 font-bold pb-4">
+                <li><a href="/menu" class="relative px-3 py-1 m-2 rounded-md shadow-sm sm:py-2 sm:text-base ring ring-transparent group md:px-4 hover:ring hover:ring-opacity-50 focus:ring-opacity-50 hover:ring-blue-600 text-white bg-gray-900 dark:bg-gray-800 dark:text-gray-200">All Menu</a></li>
                     @foreach ($kategoris as $kategori)
                         <li>
                             <a class="relative px-3 py-1 m-2 rounded-md shadow-sm sm:py-2 sm:text-base ring ring-transparent group md:px-4 hover:ring hover:ring-opacity-50 focus:ring-opacity-50 hover:ring-blue-600 text-white bg-gray-900 dark:bg-gray-800 dark:text-gray-200"
@@ -97,8 +98,7 @@
             @foreach ($produk as $item)
                 <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5">
                     <div class="card card-compact w-full bg-base-100 shadow-xl">
-                        <figure><img class="object-cover" src="../../storage/app/public/img/produk/Bubur.png"
-                                alt="Shoes" />
+                    <figure><img class="object-cover" src="{{ asset('storage/img/produk/'.$item->gambar) }}"  alt="Shoes" />
                             <div class="absolute top-[10px] right-[15px]">
                                 <h1 class="py-2 text-semibold px-3 bg-white text-gray-400 rounded-xl">
                                     {{ $item->harga }}</h1>
