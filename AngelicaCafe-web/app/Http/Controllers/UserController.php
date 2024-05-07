@@ -1,12 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
-
+#tambahan
 use App\Models\User;
+use App\Models\Order;
 use App\Models\Address;
+use App\Models\OrderDetail;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+
 
 class UserController extends Controller
 {
@@ -130,5 +134,25 @@ class UserController extends Controller
 
         return redirect()->back()->with('failed', 'Profile picture updated failed.');
     
+    }
+    #tambahan 
+    public function deleteAddress($id){
+        $address = Address::findOrFail($id);
+        $address->delete();
+ 
+        return redirect()->back()->with('success', 'Address berhasil dihapus');
+    }
+    public function detailTransaction($id){
+        $detailOrder = OrderDetail::where('order_id',$id)->get();
+        $getUser = Order::findOrFail($id);
+        
+ 
+        $user = Address::where('user_id',$getUser->user_id)->first();
+ 
+        return view('profile.transactionDetail',[
+            'detailOrder' => $detailOrder,
+            'users' => $user,
+            'order' => $getUser
+        ]);
     }
 }

@@ -94,6 +94,8 @@ Route::get('/profile/address/edit/{id}', [UserController::class,'editAddress'])-
 Route::put('/profile/address/edit/{id}', [UserController::class,'updateAddress'])->name('address.update');
 Route::get('/profile/address/add', [UserController::class,'addAddress'])->name('address.add');
 Route::post('/profile/address/add', [UserController::class,'storeAddress'])->name('storeAddress');
+Route::delete('profile/delete/{id}',[UserController::class, 'deleteAddress'])->name('address.delete');
+Route::get('/profile/transaction/detail/{id}', [UserController::class,'detailTransaction'])->name('transaction.detail');
 Route::put('/profile/update-profile-picture', [UserController::class, 'updateProfilePicture'])->name('profile.update-profile-picture');
 Route::get('/review',[ReviewController::class,'index']);
 Route::post('/review/store',[ReviewController::class,'store'])->name('review.store');
