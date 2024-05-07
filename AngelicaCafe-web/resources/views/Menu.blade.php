@@ -45,7 +45,7 @@
         <div class="flex">
             <div class="bg-[#D1BAA4] text-[#3E2E27] w-[30%] top-[60%] px-4 pt-2 rounded-xl right-[65%] absolute">
                 <h1 class="font-semibold text-center text-xl">Filter</h1>
-                <form action="/filter" class="my-4" method="GET">
+                <form action="/filter" class="my-4" method="GET" >
                     <div class="flex flex-row justify-between">
                         <div class="flex gap-2">
                             <input type="checkbox" name="filters[]" class="checkbox border-[#3E2E27] border-2"
