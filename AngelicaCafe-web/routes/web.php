@@ -10,6 +10,9 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CartController; 
 use App\Http\Controllers\ProdukController; 
 use App\Http\Controllers\MenuController; 
+use App\Http\Controllers\CategoryController; 
+use App\Http\Controllers\ReservationController;
+
 
 
 /*
@@ -42,15 +45,25 @@ Route::get('/forgot', function () {
 Route::get('/signup', function () {
     return view('/auth/signup');
 });
+// Rute untuk Resource Controller ReservationController
+Route::get('/reservations/step-one', [ReservationController::class, 'stepOne'])->name('reservations.step-one');
+Route::post('/reservations/store-step-one', [ReservationController::class, 'storeStepOne'])->name('reservations.store.step-one');
+Route::get('/reservations/step-two', [ReservationController::class, 'stepTwo'])->name('reservations.step-two');
+Route::post('/reservations/store-step-two', [ReservationController::class, 'storeStepTwo'])->name('reservations.store.step-two');
+Route::get('/reservations/step-two', [ReservationController::class, 'stepTwo'])->name('reservations.step-two');
+
+
+
 // controll database about us
 Route::get('/about',[AboutusController::class, 'index'])->name('aboutus');
 
 // controll database menu
 Route::get('/menu', [MenuController::class, 'index'])->name('menu');
+Route::get('/search-input', [MenuController::class, 'search'])->name('search');
+Route::get('/filter', [MenuController::class, 'filter'])->name('produk.filter');
 Route::get('/',[MenuController::class, 'menuUser'])->name('menuUser');
 Route::get('/menu/{id?}', [MenuController::class, 'index'])->name('menu.index');
 Route::get('/menu/{id}/detail', 'MenuController@showDetail')->name('menu.detail');
-
 Route::get('/cart', function () {
     return view('cart');
 });
@@ -81,11 +94,15 @@ Route::get('/profile/address/edit/{id}', [UserController::class,'editAddress'])-
 Route::put('/profile/address/edit/{id}', [UserController::class,'updateAddress'])->name('address.update');
 Route::get('/profile/address/add', [UserController::class,'addAddress'])->name('address.add');
 Route::post('/profile/address/add', [UserController::class,'storeAddress'])->name('storeAddress');
+Route::delete('profile/delete/{id}',[UserController::class, 'deleteAddress'])->name('address.delete');
+Route::get('/profile/transaction/detail/{id}', [UserController::class,'detailTransaction'])->name('transaction.detail');
 Route::put('/profile/update-profile-picture', [UserController::class, 'updateProfilePicture'])->name('profile.update-profile-picture');
 Route::get('/review',[ReviewController::class,'index']);
 Route::post('/review/store',[ReviewController::class,'store'])->name('review.store');
 
 Route::prefix('admin')->group(function () {
+    // Route untuk halaman utama admin
+    Route::get('/', [AdminController::class, 'index'])->name('admin.home');
     // route about us
     Route::get('/aboutUs/edit', [AdminAboutUsController::class, 'edit'])->name('admin.aboutUs.edit');
     Route::post('/aboutUs/update', [AdminAboutUsController::class, 'update'])->name('admin.aboutUs.update');
@@ -100,6 +117,10 @@ Route::prefix('admin')->group(function () {
     Route::get('produks/update/{id}', [ProdukController::class, 'edit']);
     Route::put('produks/update/{id}', [ProdukController::class, 'update'])->name('admin.produks.update');
     Route::delete('produks/delete/{id}',[ProdukController::class, 'delete'])->name('admin.produks.delete');
+    //Category
+    Route::get('category', [CategoryController::class, 'index'])->name('admin.category');
+    Route::get('category/create', [CategoryController::class, 'create'])->name('admin.category.create');
+    Route::post('category/store', [CategoryController::class, 'store'])->name('admin.category.store');
 });
 
 Route::get('/about', [AboutusController::class, 'index'])->name('aboutus');
