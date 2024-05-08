@@ -101,6 +101,8 @@ Route::get('/review',[ReviewController::class,'index']);
 Route::post('/review/store',[ReviewController::class,'store'])->name('review.store');
 
 Route::prefix('admin')->group(function () {
+    // Route untuk halaman utama admin
+    Route::get('/', [AdminController::class, 'index'])->name('admin.home');
     // route about us
     Route::get('/aboutUs/edit', [AdminAboutUsController::class, 'edit'])->name('admin.aboutUs.edit');
     Route::post('/aboutUs/update', [AdminAboutUsController::class, 'update'])->name('admin.aboutUs.update');
