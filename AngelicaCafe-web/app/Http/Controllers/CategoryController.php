@@ -28,5 +28,20 @@ class CategoryController extends Controller
         ]);
         return redirect()->route('admin.category');
     }
-    
+
+    public function edit($id){
+        $findCategory = Kategori::findOrFail($id);
+        return view('admin.updatecategory',[
+            'kategori' => $findCategory
+        ]);
+    }
+
+    public function update($id, Request $request){
+        $findCategory = Kategori::findOrFail($id);
+
+        $findCategory->nama_kategori = $request->nama_kategori;
+        $findCategory->update();
+
+        return redirect()->route('admin.category');
+    }
 }
