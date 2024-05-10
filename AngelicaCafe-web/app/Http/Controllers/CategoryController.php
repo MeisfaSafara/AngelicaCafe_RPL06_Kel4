@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kategori;
+use App\Models\Produk;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -43,5 +44,19 @@ class CategoryController extends Controller
         $findCategory->update();
 
         return redirect()->route('admin.category');
+    }
+
+    public function delete($id){
+        $findCategory = Kategori::findOrFail($id);
+
+        $productsUsingCategory = Produk::where('id_kategori', $id)->exists();
+    
+        if ($productsUsingCategory) {
+            return redirect()->route('admin.category')->with('error', 'Kategori tidak dapat dihapus karena masih digunakan oleh beberapa produk.');
+        }
+
+        $findCategory->delete();
+    
+        return redirect()->route('admin.category')->with('success', 'Kategori berhasil dihapus');
     }
 }

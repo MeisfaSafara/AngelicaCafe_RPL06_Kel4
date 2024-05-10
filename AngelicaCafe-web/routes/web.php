@@ -123,6 +123,7 @@ Route::prefix('admin')->group(function () {
     Route::post('category/store', [CategoryController::class, 'store'])->name('admin.category.store');
     Route::get('category/update/{id}', [CategoryController::class, 'edit']);
     Route::put('category/update/{id}', [CategoryController::class, 'update'])->name('admin.category.update');
+    Route::delete('category/delete/{id}',[CategoryController::class, 'delete'])->name('admin.category.delete');
 });
 
 Route::get('/about', [AboutusController::class, 'index'])->name('aboutus');

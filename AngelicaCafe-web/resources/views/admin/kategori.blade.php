@@ -22,8 +22,21 @@
 <body>
 
     @include('layout.sidebar')
+
     <div class="p-4 sm:ml-64">
-        <div>
+    @if(session('success'))
+        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+            <strong class="font-bold">Success!</strong>
+            <span class="block sm:inline">{{ session('success') }}</span>
+        </div>
+    @endif
+    @if(session('error'))
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+            <strong class="font-bold">Error!</strong>
+            <span class="block sm:inline">{{ session('error') }}</span>
+        </div>
+    @endif
+        <div class="mt-2">
             <a type="button" href="{{route('admin.category.create')}}" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Tambah Kategori</a>
         </div>
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -45,7 +58,15 @@
                             {{$kategori->nama_kategori}}
                         </td>
                         <td class="px-6 py-4">
-                            <a href="{{ route('admin.category.update', $kategori->id_kategori) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                            <div class="flex">
+                                <a href="{{ route('admin.category.update', $kategori->id_kategori) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                <span class="mx-2 text-gray-400 dark:text-gray-600">|</span>
+                                <form action="{{ route('admin.category.delete', $kategori->id_kategori) }}" method="POST">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button type="submit" class="font-medium text-red-600 dark:text-blue-500 hover:underline ml-2">Delete</button>
+                                </form>  
+                            </div>
                     </tr>
                     @endforeach
                 </tbody>
