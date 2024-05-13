@@ -38,24 +38,24 @@
 
         {{-- <img src={{ asset('/img/MenuBackground.png') }} class="w-full h-full" alt=""> --}}
     </div>
-    <div class="bg-[#D1BAA4] text-[#3E2E27] w-[30%] top-[60%] px-4 pt-2 rounded-xl right-[5%] absolute">
+    <div class="bg-[#D1BAA4] text-[#3E2E27] w-[20%] top-[53%] px-4 pt-2 rounded-xl right-[70%] absolute">
         <h1 class="font-semibold text-center text-xl">Filter</h1>
-        <form action="/filter" class="my-4" method="GET">
-            <div class="flex flex-row justify-between">
+        <form action="/filter" class="my-1" method="GET">
+            <div class="flex flex-col justify-between">
                 <div class="flex gap-2">
                     <input type="checkbox" name="filters[]" class="checkbox border-[#3E2E27] border-2"
                         value="cheap">
-                    <p>Murah</p>
+                    <p>< 6000</p>
                 </div>
                 <div class="flex gap-2">
                     <input type="checkbox" name="filters[]" class="checkbox border-[#3E2E27] border-2"
                         value="medium">
-                    <p>Medium</p>
+                    <p>6000 > 10000</p>
                 </div>
                 <div class="flex gap-2">
                     <input type="checkbox" name="filters[]" class="checkbox border-[#3E2E27] border-2"
                         value="expensive">
-                    <p>Mahal</p>
+                    <p>> 10000</p>
                 </div>
             </div>
             <div class="flex justify-center">
