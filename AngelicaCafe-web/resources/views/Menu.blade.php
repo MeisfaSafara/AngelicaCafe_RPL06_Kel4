@@ -108,7 +108,7 @@
                             <h2 class="card-title">{{ $item->nama_Produk }}</h2>
                             <p>{{ $item->deskripsi }}</p>
                             <div class="card-actions justify-end">
-                                <a class="btn text-white bg-[#764507]" href="">Add to cart</a>
+                                <a class="btn text-white bg-[#764507]" href="{{route('cart.add',$item->id_produk)}}">Add to cart</a>
                             </div>
                         </div>
                     </div>
