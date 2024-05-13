@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\AdminAboutUsController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CartController; 
 use App\Http\Controllers\ProdukController; 
@@ -35,7 +36,9 @@ Route::get('/forgot', function () {
 Route::get('/signup', function () {
     return view('/auth/signup');
 });
-
+Route::get('/contact', function () {
+    return view('contact');
+});
 Route::get('/about', function () {
     return view('about');
 });
@@ -45,6 +48,7 @@ Route::get('/forgot', function () {
 Route::get('/signup', function () {
     return view('/auth/signup');
 });
+
 // Rute untuk Resource Controller ReservationController
 Route::get('/reservations/step-one', [ReservationController::class, 'stepOne'])->name('reservations.step-one');
 Route::post('/reservations/store-step-one', [ReservationController::class, 'storeStepOne'])->name('reservations.store.step-one');
