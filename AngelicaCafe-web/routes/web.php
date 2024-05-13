@@ -50,9 +50,7 @@ Route::get('/reservations/step-one', [ReservationController::class, 'stepOne'])-
 Route::post('/reservations/store-step-one', [ReservationController::class, 'storeStepOne'])->name('reservations.store.step-one');
 Route::get('/reservations/step-two', [ReservationController::class, 'stepTwo'])->name('reservations.step-two');
 Route::post('/reservations/store-step-two', [ReservationController::class, 'storeStepTwo'])->name('reservations.store.step-two');
-Route::get('/reservations/step-two', [ReservationController::class, 'stepTwo'])->name('reservations.step-two');
-
-
+Route::get('/reservations/finish-step', [ReservationController::class, 'finishStep'])->name('reservations.finish-step');
 
 // controll database about us
 Route::get('/about',[AboutusController::class, 'index'])->name('aboutus');
