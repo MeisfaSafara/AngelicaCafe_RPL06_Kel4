@@ -43,9 +43,9 @@
 
     <div class="flex flex-col justify-center w-full mt-[3em]">
         <div class="flex">
-            <div class="bg-[#D1BAA4] text-[#3E2E27] w-[20%] top-[53%] px-4 pt-2 rounded-xl right-[73%] absolute">
+            <div class="bg-[#D1BAA4] text-[#3E2E27] w-[20%] top-[52%] px-4 pt-2 rounded-xl right-[73%] absolute">
                 <h1 class="font-semibold text-center text-xl">Filter</h1>
-                <form action="/filter" class="my-4" method="GET" >
+                <form action="/filter" class="my-1" method="GET" >
                     <div class="flex flex-col justify-between">
                         <div class="flex gap-2">
                             <input type="checkbox" name="filters[]" class="checkbox border-[#3E2E27] border-2"
@@ -94,7 +94,7 @@
             </div>
         </div>
 
-        <div class="w-full flex flex-wrap gap-3 mt-3 justify-center mb-8">
+        <div class="w-full flex flex-wrap gap-4 mt-4 justify-center mb-10">
             @foreach ($produk as $item)
                 <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5">
                     <div class="card card-compact w-full bg-base-100 shadow-xl">
