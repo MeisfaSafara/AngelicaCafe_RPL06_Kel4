@@ -126,3 +126,23 @@ Route::prefix('admin')->group(function () {
 
 Route::get('/about', [AboutusController::class, 'index'])->name('aboutus');
 Route::get('/admin/review', [ReviewController::class, 'adminReview']); 
+
+Route::middleware(['auth'])->group(function () {
+    // Rute-rute yang memerlukan autentikasi di sini
+    Route::get('/profile', [UserController::class, 'profile'])->name('profile.user');
+
+    Route::put('/profile/update', [UserController::class, 'profileUpdate'])->name('profile.update');
+    Route::get('/checkout', [CartController::class, 'checkout']);
+    Route::post('/cekot',[CartController::class,'order']);
+    Route::post('/checkout/order', [CartController::class, 'order'])->name('checkout.order');
+    Route::get('/profile/address', [UserController::class,'showAddress'])->name('address.index');
+    Route::get('/profile/address/edit/{id}', [UserController::class,'editAddress'])->name('address.edit');
+    Route::put('/profile/address/edit/{id}', [UserController::class,'updateAddress'])->name('address.update');
+    Route::get('/profile/address/add', [UserController::class,'addAddress'])->name('address.add');
+    Route::post('/profile/address/add', [UserController::class,'storeAddress'])->name('storeAddress');
+    Route::put('/profile/update-profile-picture', [UserController::class, 'updateProfilePicture'])->name('profile.update-profile-picture');
+    Route::get('/cart/{id}', [CartController::class, 'addItemToCart'])->name('cart.add');
+    Route::post('/updatecart',[CartController::class,'updateCart']);
+    Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
+    Route::get('/profile/transaction',[TransactionController::class,'showOrder'])->name('profile.transaction');
+});
