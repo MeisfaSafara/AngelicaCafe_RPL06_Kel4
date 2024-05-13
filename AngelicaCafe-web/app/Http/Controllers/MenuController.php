@@ -26,7 +26,6 @@ class MenuController extends Controller
     }
 
 
-
     public function menuUser(){
         $produk = Produk::all();
 

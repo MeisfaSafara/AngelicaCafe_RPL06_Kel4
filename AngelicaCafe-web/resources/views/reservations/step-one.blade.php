@@ -145,6 +145,30 @@
     @include('layout.footer')
 
     @extends('layouts.app')
+    <!-- WhatsApp Floating Button Script -->
+    <script>
+        var script = document.createElement('script');
+        script.src = 'https://sleekflow.io/whatsapp-button.js';
+        script.async = true;
+        script.onload = function () {
+            whatsappButton({
+                buttonName: 'Hubungi Kami',
+                buttonIconSize: '22',
+                buttonMargin: 'true',
+                brandName: 'Angelica Cafe',
+                brandSubtitleText: 'All rights reserved',
+                buttonSize: 'medium',
+                buttonPosition: 'right',
+                callToAction: 'Mulai Chat',
+                phoneNumber: '6281315666669',
+                welcomeMessage: 'Halo 👋\nAda yang bisa kami bantu?',
+                prefillMessage: 'Tentu, Saya akan memesanya',
+                containerId: 'whatsappButtonContainer', // Specify the container ID here
+            });
+        };
+        document.body.appendChild(script);
+    </script>
+
 
 
 </body>
