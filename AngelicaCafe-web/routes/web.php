@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\AdminAboutUsController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CartController; 
 use App\Http\Controllers\ProdukController; 
@@ -35,7 +36,9 @@ Route::get('/forgot', function () {
 Route::get('/signup', function () {
     return view('/auth/signup');
 });
-
+Route::get('/contact', function () {
+    return view('contact');
+});
 Route::get('/about', function () {
     return view('about');
 });
@@ -45,14 +48,13 @@ Route::get('/forgot', function () {
 Route::get('/signup', function () {
     return view('/auth/signup');
 });
+
 // Rute untuk Resource Controller ReservationController
 Route::get('/reservations/step-one', [ReservationController::class, 'stepOne'])->name('reservations.step-one');
 Route::post('/reservations/store-step-one', [ReservationController::class, 'storeStepOne'])->name('reservations.store.step-one');
 Route::get('/reservations/step-two', [ReservationController::class, 'stepTwo'])->name('reservations.step-two');
 Route::post('/reservations/store-step-two', [ReservationController::class, 'storeStepTwo'])->name('reservations.store.step-two');
-Route::get('/reservations/step-two', [ReservationController::class, 'stepTwo'])->name('reservations.step-two');
-
-
+Route::get('/reservations/finish-step', [ReservationController::class, 'finishStep'])->name('reservations.finish-step');
 
 // controll database about us
 Route::get('/about',[AboutusController::class, 'index'])->name('aboutus');
@@ -128,3 +130,23 @@ Route::prefix('admin')->group(function () {
 
 Route::get('/about', [AboutusController::class, 'index'])->name('aboutus');
 Route::get('/admin/review', [ReviewController::class, 'adminReview']); 
+
+Route::middleware(['auth'])->group(function () {
+    // Rute-rute yang memerlukan autentikasi di sini
+    Route::get('/profile', [UserController::class, 'profile'])->name('profile.user');
+
+    Route::put('/profile/update', [UserController::class, 'profileUpdate'])->name('profile.update');
+    Route::get('/checkout', [CartController::class, 'checkout']);
+    Route::post('/cekot',[CartController::class,'order']);
+    Route::post('/checkout/order', [CartController::class, 'order'])->name('checkout.order');
+    Route::get('/profile/address', [UserController::class,'showAddress'])->name('address.index');
+    Route::get('/profile/address/edit/{id}', [UserController::class,'editAddress'])->name('address.edit');
+    Route::put('/profile/address/edit/{id}', [UserController::class,'updateAddress'])->name('address.update');
+    Route::get('/profile/address/add', [UserController::class,'addAddress'])->name('address.add');
+    Route::post('/profile/address/add', [UserController::class,'storeAddress'])->name('storeAddress');
+    Route::put('/profile/update-profile-picture', [UserController::class, 'updateProfilePicture'])->name('profile.update-profile-picture');
+    Route::get('/cart/{id}', [CartController::class, 'addItemToCart'])->name('cart.add');
+    Route::post('/updatecart',[CartController::class,'updateCart']);
+    Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
+    Route::get('/profile/transaction',[TransactionController::class,'showOrder'])->name('profile.transaction');
+});

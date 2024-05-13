@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="stylesheet"
@@ -41,7 +42,8 @@
                                     Step 2</div>
                             </div>
 
-                            <form method="POST" action="{{ route('reservations.store.step-two') }}">
+                            <form id="reservationForm" method="POST" action="{{ route('reservations.store.step-two') }}">
+                                @csrf
                                 <div class="sm:col-span-6">
                                     <label for="location" class="block text-sm font-medium text-gray-700">Lokasi Acara</label>
                                     <select id="location" name="location" class="block w-full mt-1 bg-white border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5">
@@ -74,8 +76,9 @@
                                 </div>
 
                                 <div class="mt-6 p-4 flex justify-between">
-                                    <a href="{{ route('reservations.step-one') }}"
-                                        class="px-4 py-2 bg-indigo-500 hover:bg-indigo-700 rounded-lg text-white">Previous</a>
+                                    <button type="button" onclick="cancelReservation()"
+                                        class="px-4 py-2 bg-red-500 hover:bg-red-700 rounded-lg text-white">Cancel
+                                        Reservation</button>
                                     <button type="submit"
                                         class="px-4 py-2 bg-indigo-500 hover:bg-indigo-700 rounded-lg text-white">Make
                                         Reservation</button>
@@ -94,8 +97,42 @@
     @extends('layouts.app')
 
 
+    <script>
+        function cancelReservation() {
+            // Logic to cancel reservation goes here
+            alert('Your reservation has been cancelled.');
+        }
+
+        document.getElementById('reservationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Success for reservation! Please wait for our reservation team to contact you.');
+            this.submit();
+        });
+    </script>
+    <!-- WhatsApp Floating Button Script -->
+    <script>
+        var script = document.createElement('script');
+        script.src = 'https://sleekflow.io/whatsapp-button.js';
+        script.async = true;
+        script.onload = function () {
+            whatsappButton({
+                buttonName: 'Hubungi Kami',
+                buttonIconSize: '22',
+                buttonMargin: 'true',
+                brandName: 'Angelica Cafe',
+                brandSubtitleText: 'All rights reserved',
+                buttonSize: 'medium',
+                buttonPosition: 'right',
+                callToAction: 'Mulai Chat',
+                phoneNumber: '6281315666669',
+                welcomeMessage: 'Halo 👋\nAda yang bisa kami bantu?',
+                prefillMessage: 'Tentu, Saya akan memesanya',
+                containerId: 'whatsappButtonContainer', // Specify the container ID here
+            });
+        };
+        document.body.appendChild(script);
+    </script>
+
 </body>
 
 </html>
-
-
