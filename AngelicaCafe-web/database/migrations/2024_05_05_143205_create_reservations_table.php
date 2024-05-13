@@ -20,6 +20,10 @@ return new class extends Migration
             $table->time('start_time');
             $table->time('end_time');
             $table->integer('guest_number');
+            $table->string('location')->nullable();
+            $table->string('venue')->nullable();
+            $table->string('order')->nullable();
+            $table->text('additional_order')->nullable();
             $table->timestamps();
         });
     }

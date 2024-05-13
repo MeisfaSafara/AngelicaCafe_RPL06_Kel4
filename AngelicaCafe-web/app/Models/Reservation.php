@@ -8,16 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Reservation extends Model
 {
     use HasFactory;
-
-    // Accessor untuk memformat tanggal
     protected $fillable = [
-        'first_name', 
-        'email', 
-        'tel_number', 
-        'res_date', 
-        'start_time', 
-        'end_time', 
-        'guest_number'
+        'name',
+        'email',
+        'tel_number',
+        'res_date',
+        'start_time',
+        'end_time',
+        'guest_number',
+        'location',
+        'venue',
+        'order',
+        'additional_order',
     ];
-
 }
