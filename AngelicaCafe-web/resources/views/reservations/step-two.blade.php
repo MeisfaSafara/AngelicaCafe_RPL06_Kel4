@@ -76,9 +76,8 @@
                                 </div>
 
                                 <div class="mt-6 p-4 flex justify-between">
-                                    <button type="button" onclick="cancelReservation()"
-                                        class="px-4 py-2 bg-red-500 hover:bg-red-700 rounded-lg text-white">Cancel
-                                        Reservation</button>
+                                    <a href="{{ route('reservations.step-one') }}"
+                                        class="px-4 py-2 bg-indigo-500 hover:bg-indigo-700 rounded-lg text-white">Previous</a>
                                     <button type="submit"
                                         class="px-4 py-2 bg-indigo-500 hover:bg-indigo-700 rounded-lg text-white">Make
                                         Reservation</button>

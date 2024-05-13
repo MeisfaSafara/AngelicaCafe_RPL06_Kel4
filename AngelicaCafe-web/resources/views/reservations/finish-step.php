@@ -5,6 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reservation Confirmation</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    {{-- DisyUI --}}
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.19/dist-64.min.css" rel="stylesheet" type="text/css" />
+    {{-- DisyUI --}}
+
+    <!-- Add these links to your HTML file -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
     <style>
         /* Customize styling here */
@@ -16,7 +28,7 @@
         }
 
         .card {
-            background-color: #f7fafc;
+            background-color: #efdbb2;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
@@ -24,7 +36,7 @@
         }
 
         .btn {
-            background-color: #4a90e2;
+            background-color: #ad6b26;
             color: white;
             padding: 10px 20px;
             border-radius: 5px;
@@ -33,12 +45,12 @@
         }
 
         .btn:hover {
-            background-color: #1e5ea7;
+            background-color: #825a2c;
         }
     </style>
 </head>
 
-<body>
+<body data-theme="cupcake">
     {{-- NAVBAR --}}
     @include('layout.navbar')
     {{-- NAVBAR --}}
@@ -60,13 +72,35 @@
         </div>
 
         <p class="text-lg mb-4">You will receive a confirmation email shortly.</p>
-        <a href="{{ route('reservations.step-one') }}" class="btn">Back to Home</a>
-
+        <a href="/menu" class="btn btn-primary btn-back">&#8592; Back to Home</a>
     </div>
 
     {{-- FOOTER --}}
     @include('layout.footer')
 
+    <!-- WhatsApp Floating Button Script -->
+    <script>
+        var script = document.createElement('script');
+        script.src = 'https://sleekflow.io/whatsapp-button.js';
+        script.async = true;
+        script.onload = function () {
+            whatsappButton({
+                buttonName: 'Hubungi Kami',
+                buttonIconSize: '22',
+                buttonMargin: 'true',
+                brandName: 'Angelica Cafe',
+                brandSubtitleText: 'All rights reserved',
+                buttonSize: 'medium',
+                buttonPosition: 'right',
+                callToAction: 'Mulai Chat',
+                phoneNumber: '6281315666669',
+                welcomeMessage: 'Halo 👋\nAda yang bisa kami bantu?',
+                prefillMessage: 'Tentu, Saya akan memesanya',
+                containerId: 'whatsappButtonContainer', // Specify the container ID here
+            });
+        };
+        document.body.appendChild(script);
+    </script>
 </body>
 
 </html>
