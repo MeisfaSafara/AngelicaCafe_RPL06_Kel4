@@ -24,7 +24,6 @@ class TransactionController extends Controller
             'order' => $orders
          ]);
          
-
         
     }
 }
