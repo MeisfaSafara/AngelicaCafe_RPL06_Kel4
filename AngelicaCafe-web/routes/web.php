@@ -13,6 +13,7 @@ use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\MenuController; 
 use App\Http\Controllers\CategoryController; 
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\AdminReservationController;
 use App\Http\Controllers\TransactionController;
 
 
@@ -128,6 +129,8 @@ Route::prefix('admin')->group(function () {
     Route::get('category/update/{id}', [CategoryController::class, 'edit']);
     Route::put('category/update/{id}', [CategoryController::class, 'update'])->name('admin.category.update');
     Route::delete('category/delete/{id}',[CategoryController::class, 'delete'])->name('admin.category.delete');
+    //Reservation
+    Route::get('/admin/reservations', [AdminReservationController::class, 'index'])->name('admin.reservations.index');
 });
 
 Route::get('/about', [AboutusController::class, 'index'])->name('aboutus');
