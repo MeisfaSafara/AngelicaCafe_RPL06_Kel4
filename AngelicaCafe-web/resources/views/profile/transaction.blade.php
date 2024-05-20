@@ -82,11 +82,18 @@
                                 <p class="text-gray-400">Total Amount</p>
                                 <h1 class="font-bold text-xl">Rp . {{$orders->total_amount}}</h1>
                             </div>
-                            {{-- <div style="margin-left: auto;">
-                                <a href="#" class="bg-blue-500 text-white px-3 py-1 rounded-lg show-dropdown">Detail</a>
-                            </div> --}}
                         </div>
+                    </div>  
+                    
+                    @if($orders->status === 'success')
+                    <div class="ml-auto"> <!-- tambahkan class ml-auto di sini -->
+                        <a href="{{ route('trackOrder', $orders->id) }}">Lacak Pesanan</a>
                     </div>
+                    @endif
+                   
+
+
+      
                     {{-- <div id="detailDropdown" class="hidden bg-white shadow-md rounded-lg absolute mt-2 w-32">
                         <ul class="py-2">
                             <!-- Isi dropdown -->
