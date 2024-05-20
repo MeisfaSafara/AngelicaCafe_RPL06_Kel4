@@ -10,11 +10,9 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
-    {{-- DisyUI --}}
+    {{-- DaisyUI --}}
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.19/dist/full.min.css" rel="stylesheet" type="text/css" />
-    {{-- DisyUI --}}
-
-    <!-- Add these links to your HTML file -->
+    {{-- DaisyUI --}}
 
     <title>Document</title>
 </head>
@@ -23,8 +21,18 @@
 
     @include('layout.sidebar')
     <div class="p-4 sm:ml-64">
-        <h1 class="text-2xl font-semibold mb-4">This admin dashboard</h1>
-        <!-- Isi konten dashboard lainnya -->
+        <div class="flex-grow p-2">
+            <ul class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <li class="bg-gray-100 rounded-lg shadow-md p-4">
+                    <span class="block text-lg font-semibold text-gray-800 mb-2">Total Sales Today</span>
+                    <span class="text-2xl font-bold text-blue-600">Rp{{ number_format($totalSalesToday, 2) }}</span>
+                </li>
+                <li class="bg-gray-100 rounded-lg shadow-md p-4">
+                    <span class="block text-lg font-semibold text-gray-800 mb-2">Total Orders Today</span>
+                    <span class="text-2xl font-bold text-blue-600">{{ $totalOrdersToday }}</span>
+                </li>
+            </ul>
+        </div>
     </div>
     
 </body>
