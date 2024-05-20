@@ -32,7 +32,7 @@ class Produk extends Model
     }
     public static function getAllData()
     {
-        return self::all(); 
-    }
+        return self::all();
+    }
 
 }
