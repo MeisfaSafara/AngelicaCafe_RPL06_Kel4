@@ -76,9 +76,8 @@
                                 </div>
 
                                 <div class="mt-6 p-4 flex justify-between">
-                                    <button type="button" onclick="cancelReservation()"
-                                        class="px-4 py-2 bg-red-500 hover:bg-red-700 rounded-lg text-white">Cancel
-                                        Reservation</button>
+                                    <a href="{{ route('reservations.step-one') }}"
+                                        class="px-4 py-2 bg-indigo-500 hover:bg-indigo-700 rounded-lg text-white">Previous</a>
                                     <button type="submit"
                                         class="px-4 py-2 bg-indigo-500 hover:bg-indigo-700 rounded-lg text-white">Make
                                         Reservation</button>
@@ -109,6 +108,30 @@
             this.submit();
         });
     </script>
+    <!-- WhatsApp Floating Button Script -->
+    <script>
+        var script = document.createElement('script');
+        script.src = 'https://sleekflow.io/whatsapp-button.js';
+        script.async = true;
+        script.onload = function () {
+            whatsappButton({
+                buttonName: 'Hubungi Kami',
+                buttonIconSize: '22',
+                buttonMargin: 'true',
+                brandName: 'Angelica Cafe',
+                brandSubtitleText: 'All rights reserved',
+                buttonSize: 'medium',
+                buttonPosition: 'right',
+                callToAction: 'Mulai Chat',
+                phoneNumber: '6281315666669',
+                welcomeMessage: 'Halo 👋\nAda yang bisa kami bantu?',
+                prefillMessage: 'Tentu, Saya akan memesanya',
+                containerId: 'whatsappButtonContainer', // Specify the container ID here
+            });
+        };
+        document.body.appendChild(script);
+    </script>
+
 </body>
 
 </html>

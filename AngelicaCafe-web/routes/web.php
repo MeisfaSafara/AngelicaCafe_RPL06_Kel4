@@ -6,12 +6,16 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\AdminAboutUsController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CartController; 
 use App\Http\Controllers\ProdukController; 
 use App\Http\Controllers\MenuController; 
 use App\Http\Controllers\CategoryController; 
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\AdminReservationController;
+use App\Http\Controllers\TransactionController;
+
 
 
 
@@ -35,7 +39,9 @@ Route::get('/forgot', function () {
 Route::get('/signup', function () {
     return view('/auth/signup');
 });
-
+Route::get('/contact', function () {
+    return view('contact');
+});
 Route::get('/about', function () {
     return view('about');
 });
@@ -45,6 +51,7 @@ Route::get('/forgot', function () {
 Route::get('/signup', function () {
     return view('/auth/signup');
 });
+
 // Rute untuk Resource Controller ReservationController
 Route::get('/reservations/step-one', [ReservationController::class, 'stepOne'])->name('reservations.step-one');
 Route::post('/reservations/store-step-one', [ReservationController::class, 'storeStepOne'])->name('reservations.store.step-one');
@@ -108,6 +115,7 @@ Route::prefix('admin')->group(function () {
     Route::get('orders',[OrderController::class,'index'])->name('admin.orders.indes');
     Route::get('orders/detail/{id}',[OrderController::class,'detailOrder'])->name('admin.orders.detail');
     Route::put('orders/status/update/{id}',[OrderController::class,'updateStatusOrder'])->name('admin.orders.update.status');
+    Route::put('orders/status/delivery/{id}',[OrderController::class,'updateStatusDelivery'])->name('admin.orders.update.delivery');
     //route order produks
     Route::get('produks', [ProdukController::class, 'index']);
     Route::get('produks/create', [ProdukController::class, 'create'])->name('admin.produks.create');;
@@ -122,7 +130,32 @@ Route::prefix('admin')->group(function () {
     Route::get('category/update/{id}', [CategoryController::class, 'edit']);
     Route::put('category/update/{id}', [CategoryController::class, 'update'])->name('admin.category.update');
     Route::delete('category/delete/{id}',[CategoryController::class, 'delete'])->name('admin.category.delete');
+    //Reservation
+    Route::get('/admin/reservations', [AdminReservationController::class, 'index'])->name('admin.reservations.index');
+    //Dashboard admin
+    Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
 });
 
 Route::get('/about', [AboutusController::class, 'index'])->name('aboutus');
 Route::get('/admin/review', [ReviewController::class, 'adminReview']); 
+
+Route::middleware(['auth'])->group(function () {
+    // Rute-rute yang memerlukan autentikasi di sini
+    Route::get('/profile', [UserController::class, 'profile'])->name('profile.user');
+
+    Route::put('/profile/update', [UserController::class, 'profileUpdate'])->name('profile.update');
+    Route::get('/checkout', [CartController::class, 'checkout']);
+    Route::post('/cekot',[CartController::class,'order']);
+    Route::post('/checkout/order', [CartController::class, 'order'])->name('checkout.order');
+    Route::get('/profile/address', [UserController::class,'showAddress'])->name('address.index');
+    Route::get('/profile/address/edit/{id}', [UserController::class,'editAddress'])->name('address.edit');
+    Route::put('/profile/address/edit/{id}', [UserController::class,'updateAddress'])->name('address.update');
+    Route::get('/profile/address/add', [UserController::class,'addAddress'])->name('address.add');
+    Route::post('/profile/address/add', [UserController::class,'storeAddress'])->name('storeAddress');
+    Route::put('/profile/update-profile-picture', [UserController::class, 'updateProfilePicture'])->name('profile.update-profile-picture');
+    Route::get('/cart/{id}', [CartController::class, 'addItemToCart'])->name('cart.add');
+    Route::post('/updatecart',[CartController::class,'updateCart']);
+    Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
+    Route::get('/profile/transaction',[TransactionController::class,'showOrder'])->name('profile.transaction');
+    Route::get('/profile/track-orders/{id}', [UserController::class,'trackOrder'])->name('trackOrder');
+});

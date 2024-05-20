@@ -64,7 +64,6 @@ class UserController extends Controller
         ]);
     }
 
-
     public function editAddress($id){
         $address = Address::findOrFail($id);
         $user = auth()->user();
@@ -111,6 +110,27 @@ class UserController extends Controller
         return redirect()->route('address.index')->with('success', 'Address berhasil ditambah!');
     }
 
+    #Dekete Address 
+    public function deleteAddress($id){
+        $address = Address::findOrFail($id);
+        $address->delete();
+ 
+        return redirect()->back()->with('success', 'Address berhasil dihapus');
+    }
+    public function detailTransaction($id){
+        $detailOrder = OrderDetail::where('order_id',$id)->get();
+        $getUser = Order::findOrFail($id);
+        
+ 
+        $user = Address::where('user_id',$getUser->user_id)->first();
+ 
+        return view('profile.transactionDetail',[
+            'detailOrder' => $detailOrder,
+            'users' => $user,
+            'order' => $getUser
+        ]);
+    }
+    // Update Photo Profil
     public function updateProfilePicture(Request $request){
 
         $request->validate([
@@ -135,21 +155,15 @@ class UserController extends Controller
         return redirect()->back()->with('failed', 'Profile picture updated failed.');
     
     }
-    #tambahan 
-    public function deleteAddress($id){
-        $address = Address::findOrFail($id);
-        $address->delete();
- 
-        return redirect()->back()->with('success', 'Address berhasil dihapus');
-    }
-    public function detailTransaction($id){
+    
+    public function trackOrder($id){
         $detailOrder = OrderDetail::where('order_id',$id)->get();
         $getUser = Order::findOrFail($id);
         
- 
+
         $user = Address::where('user_id',$getUser->user_id)->first();
- 
-        return view('profile.transactionDetail',[
+
+        return view('profile.trackOrder',[
             'detailOrder' => $detailOrder,
             'users' => $user,
             'order' => $getUser
