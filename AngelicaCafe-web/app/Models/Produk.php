@@ -30,4 +30,9 @@ class Produk extends Model
     {
         return $this->hasMany(OrderDetail::class, 'product_id');
     }
+    public static function getAllData()
+    {
+        return self::all(); 
+    }
+
 }
