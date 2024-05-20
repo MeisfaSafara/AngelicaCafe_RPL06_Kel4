@@ -115,6 +115,7 @@ Route::prefix('admin')->group(function () {
     Route::get('orders',[OrderController::class,'index'])->name('admin.orders.indes');
     Route::get('orders/detail/{id}',[OrderController::class,'detailOrder'])->name('admin.orders.detail');
     Route::put('orders/status/update/{id}',[OrderController::class,'updateStatusOrder'])->name('admin.orders.update.status');
+    Route::put('orders/status/delivery/{id}',[OrderController::class,'updateStatusDelivery'])->name('admin.orders.update.delivery');
     //route order produks
     Route::get('produks', [ProdukController::class, 'index']);
     Route::get('produks/create', [ProdukController::class, 'create'])->name('admin.produks.create');;
@@ -154,4 +155,5 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/updatecart',[CartController::class,'updateCart']);
     Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
     Route::get('/profile/transaction',[TransactionController::class,'showOrder'])->name('profile.transaction');
+    Route::get('/profile/track-orders/{id}', [UserController::class,'trackOrder'])->name('trackOrder');
 });

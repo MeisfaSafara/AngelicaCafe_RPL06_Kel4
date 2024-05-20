@@ -43,5 +43,15 @@ class OrderController extends Controller
         return redirect()->back()->with('success', 'status berhasil di ubah');
     }
 
-   
+    public function updateStatusDelivery(Request $request, $id){
+        // dd($request->all());
+        $order = Order::findOrFail($id);
+
+        $order->delivery_status = $request->delivery_status;
+
+        $order->save();
+
+        return redirect()->back()->with('success', 'status pengiriman berhasil di ubah');
+    }
+
 }

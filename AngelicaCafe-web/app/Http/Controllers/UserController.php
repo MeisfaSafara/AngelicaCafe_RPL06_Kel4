@@ -156,4 +156,17 @@ class UserController extends Controller
     
     }
     
+    public function trackOrder($id){
+        $detailOrder = OrderDetail::where('order_id',$id)->get();
+        $getUser = Order::findOrFail($id);
+        
+
+        $user = Address::where('user_id',$getUser->user_id)->first();
+
+        return view('profile.trackOrder',[
+            'detailOrder' => $detailOrder,
+            'users' => $user,
+            'order' => $getUser
+        ]);
+    }
 }

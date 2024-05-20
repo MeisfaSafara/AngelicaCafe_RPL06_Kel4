@@ -65,22 +65,34 @@
                 @else
                 <div class="text-gray-900 dark:text-white">{{$order->status}}</div>
                 @endif
-            </div>        
+            </div>     
+            <div class="mb-4">
+                <div class="text-gray-600 dark:text-gray-400">Status Pengiriman</div>
+                <div class="text-gray-900 dark:text-white">{{$order->delivery_status}}</div>
+            </div>   
         </div>    
-        <div class="p-4">
-            <form action="{{route('admin.orders.update.status',$order->id)}}" method="POST">
+        <div class="p-4 flex items-center space-x-4">
+            <form action="{{route('admin.orders.update.status',$order->id)}}" method="POST" class="flex items-center">
                 @method('PUT')
                 @csrf
-                <div class="flex items-center space-x-4">
-                    <select name="status" id="status" class="border border-gray-300 rounded-lg px-3 py-2">
-                        <option value="success">success</option>
-                        <option value="pending">pending</option>
-                        <option value="failed">failed</option>
-                    </select>
-                    <button class="bg-blue-500 hover:bg-blue-600 text-white rounded-lg px-4 py-2">Ubah Status</button>
-                </div>
+                <select name="status" id="status" class="border border-gray-300 rounded-lg px-3 py-2 mr-4">
+                    <option value="success">success</option>
+                    <option value="pending">pending</option>
+                    <option value="failed">failed</option>
+                </select>
+                <button class="bg-blue-500 hover:bg-blue-600 text-white rounded-lg px-4 py-2">Ubah Status Pembayaran</button>
             </form>
-        </div>    
+            <form action="{{route('admin.orders.update.delivery',$order->id)}}" method="POST" class="flex items-center">
+                @method('PUT')
+                @csrf
+                <select name="delivery_status" id="delivery_status" class="border border-gray-300 rounded-lg px-3 py-2 mr-4">
+                    <option value="Pesanan sedang dikemas">Pesanan sedang dikemas</option>
+                    <option value="Pesanan sedang diantar">Pesanan sudah diantar</option>
+                    <option value="Pesanan sudah sampai">Pesanan sudah sampai</option>
+                </select>
+                <button class="bg-blue-500 hover:bg-blue-600 text-white rounded-lg px-4 py-2">Ubah Status Pengiriman</button>
+            </form>
+        </div>        
         <div class="relative overflow-x-auto">
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-900 uppercase dark:text-gray-400">
