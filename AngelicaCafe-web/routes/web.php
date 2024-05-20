@@ -72,6 +72,9 @@ Route::get('/menu/{id}/detail', 'MenuController@showDetail')->name('menu.detail'
 Route::get('/cart', function () {
     return view('cart');
 });
+// fitur Favourite Menu
+Route::post('/favourite/{id}', [FavouriteController::class, 'toggleFavourite']);
+
 
 Route::get('/checkout', function () {
     return view('checkout');
@@ -134,6 +137,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/admin/reservations', [AdminReservationController::class, 'index'])->name('admin.reservations.index');
     //Dashboard admin
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+    
 });
 
 Route::get('/about', [AboutusController::class, 'index'])->name('aboutus');
