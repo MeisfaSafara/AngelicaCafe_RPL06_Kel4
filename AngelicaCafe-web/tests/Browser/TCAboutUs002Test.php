@@ -15,8 +15,8 @@ class TCAboutUs002Test extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/')
-                    ->clickLink('Reservasi')
-                    ->assertPathIs('/reservations/stepone');
+                    ->clickLink('About Us')
+                    ->assertPathIs('/reservation');
         });
     }
 }
