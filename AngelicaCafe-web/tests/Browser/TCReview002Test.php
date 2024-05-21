@@ -2,21 +2,21 @@
 
 namespace Tests\Browser;
 
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
-class TCAboutUs002Test extends DuskTestCase
+class TCReview002Test extends DuskTestCase
 {
     /**
      * A Dusk test example.
-     * @group TCAboutUs002
+     * @group TCreview02
      */
     public function testExample(): void
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/')
-                    ->clickLink('About Us')
-                    ->assertPathIs('/reservation');
+            $browser->visit('/review')
+                    ->assertSee('Makanannya Enak');
         });
     }
 }
