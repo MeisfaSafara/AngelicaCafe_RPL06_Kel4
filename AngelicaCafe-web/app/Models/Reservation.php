@@ -20,5 +20,6 @@ class Reservation extends Model
         'venue',
         'order',
         'additional_order',
+        'status',
     ];
 }
