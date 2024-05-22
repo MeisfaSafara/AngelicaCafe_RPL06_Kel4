@@ -15,6 +15,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\AdminReservationController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\FavouriteController;
 
 
 
@@ -137,7 +138,16 @@ Route::prefix('admin')->group(function () {
     Route::get('/admin/reservations', [AdminReservationController::class, 'index'])->name('admin.reservations.index');
     //Dashboard admin
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
-    
+    Route::resource('reservations', AdminReservationController::class)->names([
+        'index' => 'admin.reservations.index',
+        'create' => 'admin.reservations.create',
+        'store' => 'admin.reservations.store',
+        'show' => 'admin.reservations.show',
+        'edit' => 'admin.reservations.edit',
+        'update' => 'admin.reservations.update',
+        'destroy' => 'admin.reservations.destroy',
+    ]);
+    Route::put('reservations/status/{id}', [AdminReservationController::class, 'updateStatus'])->name('admin.reservations.updateStatus');
 });
 
 Route::get('/about', [AboutusController::class, 'index'])->name('aboutus');

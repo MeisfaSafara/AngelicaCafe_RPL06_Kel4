@@ -2,16 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Reservation;
+use Illuminate\Http\Request;
 
 class AdminReservationController extends Controller
 {
     public function index()
     {
         $reservations = Reservation::all();
-        // Cetak data untuk memastikan data berhasil diambil
-        dd($reservations);
         return view('admin.reservations.index', compact('reservations'));
     }
 
@@ -22,23 +20,28 @@ class AdminReservationController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
+        $request->validate([
             'name' => 'required',
             'email' => 'required|email',
             'tel_number' => 'required',
             'res_date' => 'required|date',
             'start_time' => 'required',
             'end_time' => 'required',
-            'guest_number' => 'required|integer|min:1',
-            'location' => 'nullable|string',
-            'venue' => 'nullable|string',
-            'order' => 'nullable|string',
-            'additional_order' => 'nullable|string',
+            'guest_number' => 'required|integer',
+            'location' => 'required',
+            'venue' => 'required',
+            'order' => 'required',
         ]);
 
-        Reservation::create($validated);
+        Reservation::create($request->all());
 
-        return redirect()->route('admin.reservations.index');
+        return redirect()->route('admin.reservations.index')->with('success', 'Reservation created successfully.');
+    }
+
+    public function show($id)
+    {
+        $reservation = Reservation::findOrFail($id);
+        return view('admin.reservations.show', compact('reservation'));
     }
 
     public function edit($id)
@@ -49,43 +52,40 @@ class AdminReservationController extends Controller
 
     public function update(Request $request, $id)
     {
-        $validated = $request->validate([
+        $request->validate([
             'name' => 'required',
             'email' => 'required|email',
             'tel_number' => 'required',
             'res_date' => 'required|date',
             'start_time' => 'required',
             'end_time' => 'required',
-            'guest_number' => 'required|integer|min:1',
-            'location' => 'nullable|string',
-            'venue' => 'nullable|string',
-            'order' => 'nullable|string',
-            'additional_order' => 'nullable|string',
+            'guest_number' => 'required|integer',
+            'location' => 'required',
+            'venue' => 'required',
+            'order' => 'required',
         ]);
 
         $reservation = Reservation::findOrFail($id);
-        $reservation->update($validated);
+        $reservation->update($request->all());
 
-        return redirect()->route('admin.reservations.index');
+        return redirect()->route('admin.reservations.index')->with('success', 'Reservation updated successfully.');
     }
 
     public function destroy($id)
     {
-        Reservation::findOrFail($id)->delete();
-        return redirect()->route('admin.reservations.index');
+        $reservation = Reservation::findOrFail($id);
+        $reservation->delete();
+
+        return redirect()->route('admin.reservations.index')->with('success', 'Reservation deleted successfully.');
     }
+
 
     public function updateStatus(Request $request, $id)
-    {
-        $reservation = Reservation::findOrFail($id);
+{
+    $reservation = Reservation::findOrFail($id);
+    $reservation->update(['status' => $request->status]);
 
-        $validated = $request->validate([
-            'status' => 'required|in:pending,approved,rejected',
-        ]);
+    return redirect()->back()->with('success', 'Reservation status updated successfully.');
+}
 
-        $reservation->status = $validated['status'];
-        $reservation->save();
-
-        return redirect()->back()->with('success', 'Status berhasil diperbarui');
-    }
 }
