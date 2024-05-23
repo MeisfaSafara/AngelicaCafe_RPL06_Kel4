@@ -62,7 +62,7 @@ class AdminReservationController extends Controller
             'guest_number' => 'required|integer',
             'location' => 'required',
             'venue' => 'required',
-            'order' => 'required',
+            'status' => 'required',
         ]);
 
         $reservation = Reservation::findOrFail($id);
@@ -70,6 +70,7 @@ class AdminReservationController extends Controller
 
         return redirect()->route('admin.reservations.index')->with('success', 'Reservation updated successfully.');
     }
+
 
     public function destroy($id)
     {
@@ -81,11 +82,11 @@ class AdminReservationController extends Controller
 
 
     public function updateStatus(Request $request, $id)
-{
-    $reservation = Reservation::findOrFail($id);
-    $reservation->update(['status' => $request->status]);
+    {
+        $reservation = Reservation::findOrFail($id);
+        $reservation->update(['status' => $request->status]);
 
-    return redirect()->back()->with('success', 'Reservation status updated successfully.');
-}
+        return redirect()->back()->with('success', 'Reservation status updated successfully.');
+    }
 
 }

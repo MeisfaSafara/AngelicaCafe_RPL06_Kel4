@@ -148,6 +148,9 @@ Route::prefix('admin')->group(function () {
         'destroy' => 'admin.reservations.destroy',
     ]);
     Route::put('reservations/status/{id}', [AdminReservationController::class, 'updateStatus'])->name('admin.reservations.updateStatus');
+    Route::get('/admin/reservations', [AdminReservationController::class, 'index'])->name('admin.reservations.index');
+    Route::get('/admin/reservations/{id}/edit', [AdminReservationController::class, 'edit'])->name('admin.reservations.edit');
+    Route::put('/admin/reservations/{id}', [AdminReservationController::class, 'update'])->name('admin.reservations.update');
 });
 
 Route::get('/about', [AboutusController::class, 'index'])->name('aboutus');
