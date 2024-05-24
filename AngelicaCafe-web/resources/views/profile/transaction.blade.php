@@ -53,6 +53,9 @@
                 <a href="/profile/transaction">
                     <h1 class="font-semibold text-xl underline underline-offset-8">Transaction List</h1>
                 </a>
+                <a href="/profile/reservation">
+                    <h1 class="font-semibold text-xl">Reservation List</h1>
+                </a>
             </div>
             <div class="divider"></div>
 
