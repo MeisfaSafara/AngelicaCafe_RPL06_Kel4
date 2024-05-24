@@ -91,6 +91,9 @@ Route::get('/admin', function () {
 Route::get('/profile', function () {
     return view('profile.profile');
 });
+Route::get('/profile/reservation', function () {
+    return view('profile.reservation');
+});
 
 Route::post('/login',[AuthController::class, 'login'])->name('login');
 Route::post('/signup',[AuthController::class, 'register'])->name('register');
@@ -175,4 +178,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
     Route::get('/profile/transaction',[TransactionController::class,'showOrder'])->name('profile.transaction');
     Route::get('/profile/track-orders/{id}', [UserController::class,'trackOrder'])->name('trackOrder');
+    Route::get('/profile/reservation', [AdminReservationController::class, 'showReservations'])->name('profile.reservation');
+
 });

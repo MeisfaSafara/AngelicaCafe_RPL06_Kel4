@@ -88,5 +88,13 @@ class AdminReservationController extends Controller
 
         return redirect()->back()->with('success', 'Reservation status updated successfully.');
     }
+    public function showReservations()
+    {
+        // Fetch reservations for the authenticated user (assuming you have a user authentication setup)
+        $reservations = Reservation::all();
+
+        // Pass the reservations to the view
+        return view('profile.reservation', compact('reservations'));
+    }
 
 }
