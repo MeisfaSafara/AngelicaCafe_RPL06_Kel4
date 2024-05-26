@@ -16,7 +16,7 @@ class TCReview002Test extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/review')
-                    ->assertSee('Makanannya Enak');
+                    ->assertSee('Makanannya Enak Bgt');
         });
     }
 }

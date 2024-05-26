@@ -23,7 +23,7 @@ class TCKategoriMenu003Test extends DuskTestCase
                         $tr->assertSee('Snack')
                            ->clickLink('Edit');
                     })
-                    ->assertPathIs('/admin/category/update/8')
+                    ->assertPathIs('/admin/category/update/9')
                     ->assertSee('Nama Kategori')
                     ->type('nama_kategori', 'Snack Box')
                     ->press('Kirim');
