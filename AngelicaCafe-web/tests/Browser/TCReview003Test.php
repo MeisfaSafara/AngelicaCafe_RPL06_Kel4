@@ -19,7 +19,7 @@ class TCReview003Test extends DuskTestCase
                     ->assertSee('Review')
                     ->clickLink('Review')
                     ->assertPathIs('/admin/review')
-                    ->assertSee('Makanannya Enak');
+                    ->assertSee('Makanannya Enak Bgt');
         });
     }
 }
