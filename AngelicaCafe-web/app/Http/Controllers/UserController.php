@@ -156,6 +156,7 @@ class UserController extends Controller
     
     }
     
+    //tracking order controller
     public function trackOrder($id){
         $detailOrder = OrderDetail::where('order_id',$id)->get();
         $getUser = Order::findOrFail($id);
