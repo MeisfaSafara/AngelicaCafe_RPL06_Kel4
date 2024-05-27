@@ -8,10 +8,10 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\AdminAboutUsController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\CartController; 
-use App\Http\Controllers\ProdukController; 
-use App\Http\Controllers\MenuController; 
-use App\Http\Controllers\CategoryController; 
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\MenuController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\AdminReservationController;
 use App\Http\Controllers\TransactionController;
@@ -107,7 +107,6 @@ Route::put('/profile/address/edit/{id}', [UserController::class,'updateAddress']
 Route::get('/profile/address/add', [UserController::class,'addAddress'])->name('address.add');
 Route::post('/profile/address/add', [UserController::class,'storeAddress'])->name('storeAddress');
 Route::delete('profile/delete/{id}',[UserController::class, 'deleteAddress'])->name('address.delete');
-Route::get('/profile/transaction/detail/{id}', [UserController::class,'detailTransaction'])->name('transaction.detail');
 Route::put('/profile/update-profile-picture', [UserController::class, 'updateProfilePicture'])->name('profile.update-profile-picture');
 Route::get('/review',[ReviewController::class,'index']);
 Route::post('/review/store',[ReviewController::class,'store'])->name('review.store');
@@ -157,7 +156,7 @@ Route::prefix('admin')->group(function () {
 });
 
 Route::get('/about', [AboutusController::class, 'index'])->name('aboutus');
-Route::get('/admin/review', [ReviewController::class, 'adminReview']); 
+Route::get('/admin/review', [ReviewController::class, 'adminReview']);
 
 Route::middleware(['auth'])->group(function () {
     // Rute-rute yang memerlukan autentikasi di sini
@@ -179,5 +178,4 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/profile/transaction',[TransactionController::class,'showOrder'])->name('profile.transaction');
     Route::get('/profile/track-orders/{id}', [UserController::class,'trackOrder'])->name('trackOrder');
     Route::get('/profile/reservation', [AdminReservationController::class, 'showReservations'])->name('profile.reservation');
-
 });

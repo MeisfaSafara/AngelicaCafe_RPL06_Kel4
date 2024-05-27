@@ -16,14 +16,16 @@ class TransactionController extends Controller
          if (!$user) {
              return redirect()->route('login'); // Redirect ke halaman login jika tidak ada pengguna yang login
          }
- 
+
 
          $orders = Order::where('user_id', $user->id)->with('orderDetails')->get();
-         
+
          return view('profile.transaction',[
             'order' => $orders
          ]);
-         
-        
+
+
     }
+    
+
 }
