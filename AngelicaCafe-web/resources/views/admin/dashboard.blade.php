@@ -14,7 +14,7 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.19/dist/full.min.css" rel="stylesheet" type="text/css" />
     {{-- DaisyUI --}}
 
-    <title>Document</title>
+    <title>Admin Dashboard</title>
 </head>
 
 <body>
@@ -33,8 +33,23 @@
                 </li>
             </ul>
         </div>
+
+        <div class="flex-grow p-2">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                @foreach ($popularProducts as $product)
+                <div class="bg-gray-100 rounded-lg shadow-md p-4 relative">
+                    <div class="absolute top-0 left-0 bg-red-500 text-white text-lg font-bold px-2 py-1 rounded-br-lg">
+                        #{{ $loop->iteration }}
+                    </div>
+                    <img src="{{ Storage::url('public/img/produk/'.$product->product->gambar) }}" alt="{{ $product->product->nama_Produk }}" class="w-full h-48 object-cover mb-4">
+                    <h3 class="text-lg font-semibold text-gray-800">{{ $product->product->nama_Produk }}</h3>
+                    <p class="text-gray-600">Ordered: {{ $product->total_quantity }} times</p>
+                </div>
+                @endforeach
+            </div>
+        </div>
     </div>
-    
+
 </body>
 
 </html>

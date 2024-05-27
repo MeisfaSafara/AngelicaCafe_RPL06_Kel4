@@ -16,7 +16,7 @@ class UserController extends Controller
 {
     public function profile(){
         $user = Auth::user();
-        
+
         return view('profile/profile',[
             'user' => $user
         ]);
@@ -31,14 +31,14 @@ class UserController extends Controller
           ]);
 
         $user = Auth::user();
-        
+
         $userSave = User::findOrFail($user->id);
 
         $password = $user->password;
 
         if ($request->password !== null && $request->confirm_password !== null) {
             $password =  bcrypt($request->password);
-        } 
+        }
 
         $userSave->update([
             'first_name' => $validate['first_name'],
@@ -49,7 +49,7 @@ class UserController extends Controller
         ]);
 
         return redirect()->back()->with('success','Profile berhasil di update !');
-        
+
 
     }
 
@@ -110,26 +110,14 @@ class UserController extends Controller
         return redirect()->route('address.index')->with('success', 'Address berhasil ditambah!');
     }
 
-    #Dekete Address 
+    #Dekete Address
     public function deleteAddress($id){
         $address = Address::findOrFail($id);
         $address->delete();
- 
+
         return redirect()->back()->with('success', 'Address berhasil dihapus');
     }
-    public function detailTransaction($id){
-        $detailOrder = OrderDetail::where('order_id',$id)->get();
-        $getUser = Order::findOrFail($id);
-        
- 
-        $user = Address::where('user_id',$getUser->user_id)->first();
- 
-        return view('profile.transactionDetail',[
-            'detailOrder' => $detailOrder,
-            'users' => $user,
-            'order' => $getUser
-        ]);
-    }
+
     // Update Photo Profil
     public function updateProfilePicture(Request $request){
 
@@ -149,21 +137,37 @@ class UserController extends Controller
             User::find(auth()->user()->id)->update(['image' => $imagePath]);
 
             return redirect()->back()->with('success', 'Profile picture updated successfully.');
-            
+
         }
 
         return redirect()->back()->with('failed', 'Profile picture updated failed.');
-    
+
     }
-    
+
+    //tracking order controller
     public function trackOrder($id){
         $detailOrder = OrderDetail::where('order_id',$id)->get();
         $getUser = Order::findOrFail($id);
-        
+
 
         $user = Address::where('user_id',$getUser->user_id)->first();
 
         return view('profile.trackOrder',[
+            'detailOrder' => $detailOrder,
+            'users' => $user,
+            'order' => $getUser
+        ]);
+    }
+
+    //Detail Transaction
+    public function detailTransaction($id){
+        $detailOrder = OrderDetail::where('order_id',$id)->get();
+        $getUser = Order::findOrFail($id);
+
+
+        $user = Address::where('user_id',$getUser->user_id)->first();
+
+        return view('profile.transactionDetail',[
             'detailOrder' => $detailOrder,
             'users' => $user,
             'order' => $getUser

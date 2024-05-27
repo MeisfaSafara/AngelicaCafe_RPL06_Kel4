@@ -53,6 +53,9 @@
                 <a href="/profile/transaction">
                     <h1 class="font-semibold text-xl underline underline-offset-8">Transaction List</h1>
                 </a>
+                <a href="/profile/reservation">
+                    <h1 class="font-semibold text-xl">Reservation List</h1>
+                </a>
             </div>
             <div class="divider"></div>
 
@@ -83,17 +86,21 @@
                                 <h1 class="font-bold text-xl">Rp . {{$orders->total_amount}}</h1>
                             </div>
                         </div>
-                    </div>  
-                    
+                    </div>
+
+                    <div class="ml-auto"> <!-- tambahkan class ml-auto di sini -->
+                        <a href="{{ route('transaction.detail', $orders->id) }}">Lihat detail</a>
+                    </div>
+
                     @if($orders->status === 'success')
                     <div class="ml-auto"> <!-- tambahkan class ml-auto di sini -->
                         <a href="{{ route('trackOrder', $orders->id) }}">Lacak Pesanan</a>
                     </div>
                     @endif
-                   
 
 
-      
+
+
                     {{-- <div id="detailDropdown" class="hidden bg-white shadow-md rounded-lg absolute mt-2 w-32">
                         <ul class="py-2">
                             <!-- Isi dropdown -->
@@ -119,9 +126,9 @@
                 </div>
                 @endforeach
             </div>
-            
-            
-            
+
+
+
             {{-- CONTENT --}}
         </div>
     </div>
