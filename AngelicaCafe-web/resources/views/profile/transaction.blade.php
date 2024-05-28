@@ -88,15 +88,34 @@
                         </div>
                     </div>
 
-                    <div class="ml-auto"> <!-- tambahkan class ml-auto di sini -->
-                        <a href="{{ route('transaction.detail', $orders->id) }}">Lihat detail</a>
+                    <div class="ml-auto flex gap-4">
+                        @if ($orders->status === 'success')
+                            <div>
+                                <a href="{{ route('trackOrder', $orders->id) }}" class="btn btn-success">Lacak Pesanan</a> 
+                            </div>
+                        @endif
+
+                        <div>
+                            <a href="" class="btn">Lihat Detail</a> 
+                        </div>
+
+                        @if ($orders->status === 'success')
+                            @if ($orders->reviewed)
+                                <div class="flex items-center gap-2">
+                                    <span class="text-green-600 font-semibold">Reviewed</span>
+                                    <div class="bg-gray-100 p-2 rounded-md">
+                                        <p class="text-sm text-gray-700">Comment: {{ $orders->comment }}</p>
+                                    </div>
+                                </div>
+                            @else
+                                <div>
+                                    <a href="{{ route('order.review', $orders->id) }}" class="btn btn-primary">Review</a>
+                                </div>
+                            @endif
+                        @endif
                     </div>
 
-                    @if($orders->status === 'success')
-                    <div class="ml-auto"> <!-- tambahkan class ml-auto di sini -->
-                        <a href="{{ route('trackOrder', $orders->id) }}">Lacak Pesanan</a>
-                    </div>
-                    @endif
+
 
 
 

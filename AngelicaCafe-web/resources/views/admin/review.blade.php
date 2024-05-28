@@ -23,22 +23,54 @@
 
     @include('layout.sidebar')
     <div class="p-4 sm:ml-64">
-        <div id="reviews" class="mb-4">
-            @php
-                $sortedReviews = $review->sortByDesc('created_at');
-            @endphp
 
-            @foreach($sortedReviews as $r)
-            <div class="border border-gray-300 rounded-lg p-4 mb-4 shadow-md">
-                <p class="text-lg font-semibold">{{ $r->review }}</p>
-                @if($r->created_at)
-                    <small class="text-gray-500 block mt-2">{{ $r->created_at->diffForHumans() }}</small>
-                @endif
-            </div>
-            @endforeach
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">
+                            Order Id
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Nama
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Komen
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Tanggal
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Action
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($dataReview as $review)
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            {{$review->order_id}}
+                        </th>
+                        <td class="px-6 py-4">
+                            {{$review->user->name}}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{$review->comment}}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{$review->created_at}}
+                        </td>
+                        <td class="px-6 py-4">
+                            <a href="{{ route('admin.reviews.detail', $review->id) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Detail</a>                       
+                        </td>
+
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
-    
+
 </body>
 
 </html>

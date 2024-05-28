@@ -98,6 +98,7 @@ Route::get('/profile/reservation', function () {
 Route::post('/login',[AuthController::class, 'login'])->name('login');
 Route::post('/signup',[AuthController::class, 'register'])->name('register');
 Route::get('/cekUser',[AuthController::class, 'cekUser'])->name('cekuser');
+Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 
 Route::get('/profile', [UserController::class, 'profile'])->name('profile.user');
 Route::put('/profile/update', [UserController::class, 'profileUpdate'])->name('profile.update');
@@ -153,10 +154,14 @@ Route::prefix('admin')->group(function () {
     Route::get('/admin/reservations', [AdminReservationController::class, 'index'])->name('admin.reservations.index');
     Route::get('/admin/reservations/{id}/edit', [AdminReservationController::class, 'edit'])->name('admin.reservations.edit');
     Route::put('/admin/reservations/{id}', [AdminReservationController::class, 'update'])->name('admin.reservations.update');
+    //Review
+    Route::get('/reviews', [ReviewController::class, 'index'])->name('admin.reviews.index');
+    Route::get('reviews/detail/{id}',[ReviewController::class,'detail'])->name('admin.reviews.detail');
 });
 
 Route::get('/about', [AboutusController::class, 'index'])->name('aboutus');
-Route::get('/admin/review', [ReviewController::class, 'adminReview']);
+Route::get('/profile/profile/transaction/review/{id}', [ReviewController::class,'addReview'])->name('order.review');
+Route::post('/profile/profile/transaction/review/{id}', [ReviewController::class,'storeReview'])->name('store.review');
 
 Route::middleware(['auth'])->group(function () {
     // Rute-rute yang memerlukan autentikasi di sini
