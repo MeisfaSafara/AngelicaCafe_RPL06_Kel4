@@ -11,11 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('review', function (Blueprint $table) {
+        Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->text('review');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('order_id');
+            $table->text('comment');
             $table->timestamps();
+
+            // Menambahkan kunci asing
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('order_id')->references('id')->on('orders');
+
+            // Menjadikan kombinasi kolom user_id dan order_id sebagai unik
+            $table->unique(['user_id', 'order_id']);
         });
+
     }
 
     /**
