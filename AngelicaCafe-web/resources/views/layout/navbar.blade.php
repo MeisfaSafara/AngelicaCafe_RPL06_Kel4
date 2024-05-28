@@ -15,6 +15,7 @@
             <a href="/profile">
                 <img src="{{ asset('storage/'.Auth::user()->image) }}" alt="Profile Picture" width="50" height="50" style="border-radius: 50%;">
             </a>
+            <a href="/logout" class="font-bold text-[#85581F]">Logout</a>
         @else
             <!-- Tampilkan gambar lain jika tidak ada pengguna yang login -->
             <a href="/login" class="font-bold text-[#85581F]">Login</a>
