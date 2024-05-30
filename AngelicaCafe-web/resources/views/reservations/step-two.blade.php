@@ -15,8 +15,6 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.19/dist-64.min.css" rel="stylesheet" type="text/css" />
     {{-- DisyUI --}}
 
-    <!-- Add these links to your HTML file -->
-
     <title>Document</title>
 </head>
 
@@ -90,24 +88,35 @@
         </div>
 
     </div>
+
+    {{-- Modal for Success Message --}}
+    <div id="successModal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black bg-opacity-50">
+        <div class="bg-white rounded-lg shadow-lg p-6">
+            <h2 class="text-xl font-bold mb-4">Success!</h2>
+            <p>Your reservation has been made successfully. Please wait for our reservation team to contact you.</p>
+            <button id="closeModalBtn" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">Close</button>
+        </div>
+    </div>
+
     {{-- FOOTER --}}
     @include('layout.footer')
 
     @extends('layouts.app')
 
-
     <script>
-        function cancelReservation() {
-            // Logic to cancel reservation goes here
-            alert('Your reservation has been cancelled.');
-        }
-
         document.getElementById('reservationForm').addEventListener('submit', function(event) {
             event.preventDefault();
-            alert('Success for reservation! Please wait for our reservation team to contact you.');
-            this.submit();
+            // Show the modal
+            document.getElementById('successModal').classList.remove('hidden');
+        });
+
+        document.getElementById('closeModalBtn').addEventListener('click', function() {
+            document.getElementById('successModal').classList.add('hidden');
+            // Redirect to another page if needed
+            window.location.href = "{{ route('reservations.step-one') }}";
         });
     </script>
+
     <!-- WhatsApp Floating Button Script -->
     <script>
         var script = document.createElement('script');

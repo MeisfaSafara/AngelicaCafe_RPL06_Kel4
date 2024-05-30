@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\TableStatus;
 use Illuminate\Http\Request;
 use App\Models\Reservation;
-use App\Models\Table;
 
 class ReservationController extends Controller
 {
@@ -13,9 +11,10 @@ class ReservationController extends Controller
     {
         return view('reservations.step-one');
     }
+
     public function storeStepOne(Request $request)
     {
-        // Validasi data
+        // Validate data
         $validatedData = $request->validate([
             'name' => 'required|string',
             'email' => 'required|email',
@@ -26,16 +25,19 @@ class ReservationController extends Controller
             'guest_number' => 'required|integer|min:1',
         ]);
 
-        Reservation::create($validatedData);
+        $reservation = Reservation::create($validatedData);
 
         return redirect()->route('reservations.step-two');
     }
+
     public function stepTwo()
     {
         return view('reservations.step-two');
     }
+
     public function storeStepTwo(Request $request)
     {
+        // Validate data
         $validatedData = $request->validate([
             'location' => 'required|string',
             'venue' => 'required|string',
@@ -45,18 +47,17 @@ class ReservationController extends Controller
 
         $reservation = Reservation::latest()->first();
 
-        $reservation->update($validatedData);
-        $reservation = $request->session()->get('reservation');
-        $request->session()->forget('reservation');
-
-        return redirect()->route('reservations.finish-step');
+        if ($reservation) {
+            $reservation->update($validatedData);
+            $request->session()->forget('reservation');
+            return redirect()->route('reservations.finish-step')->with('success', 'Reservation made successfully!');
+        } else {
+            return redirect()->route('reservations.step-one')->with('error', 'No reservation found to update.');
+        }
     }
 
-    
-    public function finishstep()
+    public function finishStep()
     {
-        $reservation = Reservation::latest()->first();
-        return view('reservations.finish-step', compact('reservation'));
+        return view('reservations.step-one');
     }
-
 }
