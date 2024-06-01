@@ -30,7 +30,6 @@ class ReservationController extends Controller
 
         // Store reservation ID in session
         $request->session()->put('reservation_id', $reservation->id);
-        $reservation = Reservation::create($validatedData);
 
         return redirect()->route('reservations.step-two');
     }
@@ -67,18 +66,5 @@ class ReservationController extends Controller
         $reservation->update($validatedData);
 
         return redirect()->route('reservations.step-one')->with('success', 'Reservation made successfully!');
-
-        if ($reservation) {
-            $reservation->update($validatedData);
-            $request->session()->forget('reservation');
-            return redirect()->route('reservations.finish-step')->with('success', 'Reservation made successfully!');
-        } else {
-            return redirect()->route('reservations.step-one')->with('error', 'No reservation found to update.');
-        }
-    }
-
-    public function finishStep()
-    {
-        return view('reservations.step-one');
     }
 }

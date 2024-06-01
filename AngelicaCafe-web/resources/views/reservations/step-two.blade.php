@@ -16,7 +16,6 @@
     {{-- DaisyUI --}}
 
     <title>Make Reservation - Step 2</title>
-    <title>Document</title>
 </head>
 
 <body data-theme="cupcake">
@@ -33,8 +32,7 @@
                     </div>
                     <div class="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
                         <div class="w-full">
-                            <h3 class="mb-4 text-xl font-bold text-blue-600">Make Reservation - Step 2</h3>
-
+                            <h3 class="mb-4 text-xl font-bold text-brown-600">RESERVATION</h3>
                             <div class="w-full bg-gray-200 rounded-full">
                                 <div class="w-full p-1 text-xs font-medium leading-none text-center text-blue-100 bg-blue-600 rounded-full">
                                     Step 2
@@ -121,8 +119,6 @@
             // event.preventDefault(); // Remove this line to allow form submission
 
             // Display the success modal
-            event.preventDefault();
-            // Show the modal
             document.getElementById('successModal').classList.remove('hidden');
         });
 
