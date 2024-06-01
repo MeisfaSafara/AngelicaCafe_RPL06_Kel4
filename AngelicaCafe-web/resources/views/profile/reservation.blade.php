@@ -2,18 +2,17 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Icons+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
-    {{-- DaisyUI --}}
+    {{-- DisyUI --}}
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.19/dist/full.min.css" rel="stylesheet" type="text/css" />
-    {{-- DaisyUI --}}
-
+    {{-- DisyUI --}}
     <title>Document</title>
 </head>
 
@@ -59,12 +58,12 @@
             {{-- CONTENT --}}
             <div class="flex flex-col gap-6">
                 @foreach ($reservations as $reservation)
-                <div class="flex flex-col bg-white rounded-xl p-6">
-                    <div class="flex justify-between items-center mb-4">
+                <div class="flex flex-col bg-white rounded-xl p-4">
+                    <div class="flex justify-between items-center mb-2">
                         <div class="flex items-center gap-2">
-                            <h1 class="text-lg font-semibold text-gray-800">Reservation Name:</h1>
-                            <span class="text-xl font-bold text-gray-700">{{ $reservation->name }}</span>
-                            <span class="px-2 py-1 rounded-lg
+                            <h1 class="font-semibold text-gray-800">Reservation Name:</h1>
+                            <span class="font-bold text-gray-700">{{ $reservation->name }}</span>
+                            <span class="px-2 py-1 rounded-lg text-xs
                                 @if ($reservation->status === 'pending')
                                 bg-yellow-400 text-yellow-800
                                 @elseif ($reservation->status === 'confirmed')
@@ -76,17 +75,45 @@
                         <p class="text-gray-600">{{ $reservation->res_date }}</p>
                     </div>
                     <hr class="my-2 border-t border-gray-300">
-                    <div class="flex justify-between items-center">
-                        <div class="flex gap-6">
-                            <div class="flex flex-col">
+                    <div class="flex justify-between items-start">
+                        <div class="flex flex-col gap-2">
+                            <div>
                                 <p class="text-gray-600">Location:</p>
-                                <h1 class="font-bold text-lg text-gray-800">{{ $reservation->location }}</h1>
-                                <p class="text-gray-600">Order:</p>
-                                <h1 class="font-bold text-lg text-gray-800">{{ $reservation->order }}</h1>
+                                <h1 class="font-bold text-gray-800">{{ $reservation->location }}</h1>
                             </div>
-                            <div class="flex flex-col">
+                            <div>
+                                <p class="text-gray-600">Order:</p>
+                                <h1 class="font-bold text-gray-800">{{ $reservation->order }}</h1>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <div>
                                 <p class="text-gray-600">Phone Number:</p>
-                                <h1 class="font-bold text-lg text-gray-800">{{ $reservation->tel_number }}</h1>
+                                <h1 class="font-bold text-gray-800">{{ $reservation->tel_number }}</h1>
+                            </div>
+                            <div>
+                                <p class="text-gray-600">Guest Number:</p>
+                                <h1 class="font-bold text-gray-800">{{ $reservation->guest_number }}</h1>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <div>
+                                <p class="text-gray-600">Start Time:</p>
+                                <h1 class="font-bold text-gray-800">{{ $reservation->start_time }}</h1>
+                            </div>
+                            <div>
+                                <p class="text-gray-600">End Time:</p>
+                                <h1 class="font-bold text-gray-800">{{ $reservation->end_time }}</h1>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <div>
+                                <p class="text-gray-600">Venue:</p>
+                                <h1 class="font-bold text-gray-800">{{ $reservation->venue }}</h1>
+                            </div>
+                            <div>
+                                <p class="text-gray-600">Additional Order:</p>
+                                <h1 class="font-bold text-gray-800">{{ $reservation->additional_order }}</h1>
                             </div>
                         </div>
                     </div>
