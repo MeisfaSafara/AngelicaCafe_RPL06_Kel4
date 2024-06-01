@@ -18,8 +18,13 @@ class TCReview003Test extends DuskTestCase
             $browser->visit('/admin')
                     ->assertSee('Review')
                     ->clickLink('Review')
-                    ->assertPathIs('/admin/review')
-                    ->assertSee('Makanannya Enak Bgt');
+                    ->assertPathIs('/admin/reviews')
+                    ->with('table tbody tr:nth-child(3)', function ($tr) {
+                        $tr->assertSee('Enak')
+                        ->clickLink('Detail');
+                    })
+                    ->assertPathIs('/admin/reviews/detail/3')
+                    ->assertSee('Enak');
         });
     }
 }

@@ -15,10 +15,18 @@ class TCReview001Test extends DuskTestCase
     public function testExample(): void
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/review')
-                    ->assertSee('Add Review')
-                    ->type('review', 'Makanannya Enak Bgt')
-                    ->press('Save');
+            $browser->visit('/login')
+                    ->type('email', 'bangmesii@gmail.com')
+                    ->type('password', '123') 
+                    ->press('Login')
+                    ->assertPathIs('/profile')
+                    ->assertSee('Transaction List')
+                    ->clickLink('Transaction List')
+                    ->assertSee('Review')
+                    ->clickLink('Review')
+                    ->assertPathIs('/profile/profile/transaction/review/5')
+                    ->press('Save')
+                    ->assertSee('Terjadi kesalahan validasi!');
         });
     }
 }

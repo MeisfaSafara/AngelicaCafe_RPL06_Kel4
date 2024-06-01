@@ -6,19 +6,18 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
-class TCProduk001Test extends DuskTestCase
+class TCDashboard001Test extends DuskTestCase
 {
     /**
      * A Dusk test example.
-     * @group TCProduk001
+     * @group TCdashboard01
      */
     public function testExample(): void
     {
         $this->browse(function (Browser $browser) {
-            $browser->assertSee('Menu')
-                    ->clickLink('Menu')
-                    ->assertPathIs('/menu');
-                    
+            $browser->visit('/admin')
+                    ->assertSee('Total Sales Today')
+                    ->assertSee('Total Orders Today');
         });
     }
 }
