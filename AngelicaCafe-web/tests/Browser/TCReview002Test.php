@@ -15,8 +15,14 @@ class TCReview002Test extends DuskTestCase
     public function testExample(): void
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/review')
-                    ->assertSee('Makanannya Enak Bgt');
+            $browser->visit('/login')
+                    ->type('email', 'bangmesii@gmail.com')
+                    ->type('password', '123') 
+                    ->press('Login')
+                    ->assertPathIs('/profile')
+                    ->assertSee('Transaction List')
+                    ->clickLink('Transaction List')
+                    ->assertSee('Enak');
         });
     }
 }

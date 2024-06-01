@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
-class TCKategoriMenu003Test extends DuskTestCase
+class TCProduk003Test extends DuskTestCase
 {
     /**
      * A Dusk test example.
@@ -21,7 +21,7 @@ class TCKategoriMenu003Test extends DuskTestCase
                     ->assertPathIs('/admin/Products')
                     ->assertSee('Tambah Produk')
                     ->clickLink('Tambah Produk')
-                    ->assertPathIs('/admin/produks/create')
+                    ->assertPathIs('/admin/produks/create');
                     
         });
                     
