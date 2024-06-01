@@ -11,11 +11,11 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
-    {{-- DisyUI --}}
+    {{-- DaisyUI --}}
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.19/dist-64.min.css" rel="stylesheet" type="text/css" />
-    {{-- DisyUI --}}
+    {{-- DaisyUI --}}
 
-    <title>Document</title>
+    <title>Make Reservation - Step 2</title>
 </head>
 
 <body data-theme="cupcake">
@@ -28,49 +28,61 @@
                 <div class="flex flex-col md:flex-row">
                     <div class="h-32 md:h-auto md:w-1/2">
                         <img class="object-cover w-full h-full"
-                            src="{{ asset('img/Restaurant.jpeg') }}" alt="img" />
+                            src="{{ asset('img/Restaurant.jpeg') }}" alt="Restaurant" />
                     </div>
                     <div class="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
                         <div class="w-full">
-                            <h3 class="mb-4 text-xl font-bold text-blue-600">Make Reservation</h3>
+                            <h3 class="mb-4 text-xl font-bold text-blue-600">Make Reservation - Step 2</h3>
 
                             <div class="w-full bg-gray-200 rounded-full">
-                                <div
-                                    class="w-100 p-1 text-xs font-medium leading-none text-center text-blue-100 bg-blue-600 rounded-full">
-                                    Step 2</div>
+                                <div class="w-full p-1 text-xs font-medium leading-none text-center text-blue-100 bg-blue-600 rounded-full">
+                                    Step 2
+                                </div>
                             </div>
 
                             <form id="reservationForm" method="POST" action="{{ route('reservations.store.step-two') }}">
                                 @csrf
                                 <div class="sm:col-span-6">
-                                    <label for="location" class="block text-sm font-medium text-gray-700">Lokasi Acara</label>
+                                    <label for="location" class="block text-sm font-medium text-gray-700">Location</label>
                                     <select id="location" name="location" class="block w-full mt-1 bg-white border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                         <option value="Cabang Jakarta Pusat">Cabang Jakarta Pusat</option>
                                         <option value="Cabang Jakarta Selatan">Cabang Jakarta Selatan</option>
                                     </select>
+                                    @error('location')
+                                        <p class="text-red-600">{{ $message }}</p>
+                                    @enderror
                                 </div>
                                 <div class="sm:col-span-6">
-                                    <label for="venue" class="block text-sm font-medium text-gray-700">Room</label>
+                                    <label for="venue" class="block text-sm font-medium text-gray-700">Venue</label>
                                     <select id="venue" name="venue" class="block w-full mt-1 bg-white border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                         <option value="Indoor">Indoor</option>
                                         <option value="Outdoor">Outdoor</option>
                                         <option value="Meeting Room">Meeting Room</option>
                                     </select>
+                                    @error('venue')
+                                        <p class="text-red-600">{{ $message }}</p>
+                                    @enderror
                                 </div>
 
                                 <div class="sm:col-span-6">
-                                    <label for="order" class="block text-sm font-medium text-gray-700">Pesanan</label>
+                                    <label for="order" class="block text-sm font-medium text-gray-700">Order</label>
                                     <select id="order" name="order" class="block w-full mt-1 bg-white border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                         <option value="Paket 1">Paket 1</option>
                                         <option value="Paket 2">Paket 2</option>
                                         <option value="Paket 3">Paket 3</option>
                                     </select>
+                                    @error('order')
+                                        <p class="text-red-600">{{ $message }}</p>
+                                    @enderror
                                 </div>
 
                                 <div class="sm:col-span-6">
-                                    <label for="additional_order" class="block text-sm font-medium text-gray-700">Tambahan Pesanan</label>
+                                    <label for="additional_order" class="block text-sm font-medium text-gray-700">Additional Order</label>
                                     <textarea id="additional_order" name="additional_order" rows="3"
                                         class="block w-full appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5"></textarea>
+                                    @error('additional_order')
+                                        <p class="text-red-600">{{ $message }}</p>
+                                    @enderror
                                 </div>
 
                                 <div class="mt-6 p-4 flex justify-between">
@@ -105,8 +117,9 @@
 
     <script>
         document.getElementById('reservationForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            // Show the modal
+            // event.preventDefault(); // Remove this line to allow form submission
+
+            // Display the success modal
             document.getElementById('successModal').classList.remove('hidden');
         });
 
@@ -135,7 +148,7 @@
                 phoneNumber: '6281315666669',
                 welcomeMessage: 'Halo 👋\nAda yang bisa kami bantu?',
                 prefillMessage: 'Tentu, Saya akan memesanya',
-                containerId: 'whatsappButtonContainer', // Specify the container ID here
+                containerId: 'whatsappButtonContainer',
             });
         };
         document.body.appendChild(script);
