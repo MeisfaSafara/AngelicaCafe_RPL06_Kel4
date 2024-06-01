@@ -35,7 +35,7 @@
     <div class="h-full pt-[7em] mr-4 ml-4">
         <div class="mb-4">
             <div class="mb-4">
-                <a href="/admin/orders" class="flex items-center">
+                <a href="/profile/transaction" class="flex items-center">
                     <svg fill="#008bf5" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" stroke="#008bf5" width="16" height="16" class="mr-1">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
