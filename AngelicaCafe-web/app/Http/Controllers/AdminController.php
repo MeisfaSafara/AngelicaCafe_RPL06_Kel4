@@ -20,11 +20,40 @@ class AdminController extends Controller
             ->with('product')
             ->get();
 
+        $salesData = Order::select(DB::raw('MONTH(created_at) as month'), DB::raw('SUM(total_amount) as total_sales'))
+            ->where('status', 'success')
+            ->groupBy('month')
+            ->orderBy('month', 'asc')
+            ->get();
+
+        $months = collect(range(1, 12));
+
+        $formattedSalesData = $months->mapWithKeys(function($month) use ($salesData) {
+            $sales = $salesData->firstWhere('month', $month);
+            return [$month => $sales ? $sales->total_sales : 0];
+        });
+
+        $chartData = [
+            'labels' => $months->map(function($month) {
+                return date('F', mktime(0, 0, 0, $month, 10));
+            })->toArray(),
+            'datasets' => [
+                [
+                    'label' => 'Total Sales',
+                    'backgroundColor' => 'rgba(75, 192, 192, 0.2)',
+                    'borderColor' => 'rgba(75, 192, 192, 1)',
+                    'borderWidth' => 1,
+                    'data' => $formattedSalesData->values()->toArray(),
+                ]
+            ],
+        ];
+
         return view('admin.dashboard', [
             'orders' => $orders,
             'totalSalesToday' => $totalSalesToday,
             'totalOrdersToday' => $totalOrdersToday,
-            'popularProducts' => $popularProducts
+            'popularProducts' => $popularProducts,
+            'chartData' => json_encode($chartData)
         ]);
     }
 }

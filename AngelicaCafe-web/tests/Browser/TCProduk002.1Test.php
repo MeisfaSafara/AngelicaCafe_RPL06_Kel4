@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
-class TCKategoriMenu003Test extends DuskTestCase
+class TCProduk002Test extends DuskTestCase
 {
     /**
      * A Dusk test example.

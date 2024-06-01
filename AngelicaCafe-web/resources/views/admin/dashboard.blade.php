@@ -21,27 +21,30 @@
 
     @include('layout.sidebar')
     <div class="p-4 sm:ml-64">
-        <div class="flex-grow p-2">
-            <ul class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                <li class="bg-gray-100 rounded-lg shadow-md p-4">
+        <div class="flex flex-col gap-4">
+            <ul class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                <li class="bg-gray-100 rounded-lg shadow-md p-6">
                     <span class="block text-lg font-semibold text-gray-800 mb-2">Total Sales Today</span>
                     <span class="text-2xl font-bold text-blue-600">Rp{{ number_format($totalSalesToday, 2) }}</span>
                 </li>
-                <li class="bg-gray-100 rounded-lg shadow-md p-4">
+                <li class="bg-gray-100 rounded-lg shadow-md p-6">
                     <span class="block text-lg font-semibold text-gray-800 mb-2">Total Orders Today</span>
                     <span class="text-2xl font-bold text-blue-600">{{ $totalOrdersToday }}</span>
                 </li>
             </ul>
-        </div>
 
-        <div class="flex-grow p-2">
+            <div class="bg-gray-100 rounded-lg shadow-md p-6">
+                <canvas id="salesChart"></canvas>
+            </div>
+            <div id="chart-data" data-chart="{{ $chartData }}" class="hidden"></div>
+
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach ($popularProducts as $product)
-                <div class="bg-gray-100 rounded-lg shadow-md p-4 relative">
-                    <div class="absolute top-0 left-0 bg-red-500 text-white text-lg font-bold px-2 py-1 rounded-br-lg">
+                <div class="bg-gray-100 rounded-lg shadow-md p-6 relative">
+                    <div class="absolute top-0 left-0 bg-red-500 text-gray-100 text-lg font-bold px-2 py-1 rounded-br-lg">
                         #{{ $loop->iteration }}
                     </div>
-                    <img src="{{ Storage::url('public/img/produk/'.$product->product->gambar) }}" alt="{{ $product->product->nama_Produk }}" class="w-full h-48 object-cover mb-4">
+                    <img src="{{ Storage::url('public/img/produk/'.$product->product->gambar) }}" alt="{{ $product->product->nama_Produk }}" class="w-full h-48 object-cover mb-4 rounded-lg">
                     <h3 class="text-lg font-semibold text-gray-800">{{ $product->product->nama_Produk }}</h3>
                     <p class="text-gray-600">Ordered: {{ $product->total_quantity }} times</p>
                 </div>
@@ -49,6 +52,28 @@
             </div>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const ctx = document.getElementById('salesChart').getContext('2d');
+            const chartDataElement = document.getElementById('chart-data');
+            const chartData = JSON.parse(chartDataElement.getAttribute('data-chart'));
+
+            const salesChart = new Chart(ctx, {
+                type: 'bar',
+                data: chartData,
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+    </script>
 
 </body>
 

@@ -50,7 +50,7 @@
                     </span>
                     <div class="flex flex-col">
                         <h1 class="font-bold">Call Us</h1>
-                        <p class="text-gray-400"></p>
+                        <p class="text-gray-400">+6281315666669</p>
                     </div>
                 </div>
             </div>
@@ -61,7 +61,7 @@
                     </span>
                     <div class="flex flex-col">
                         <h1 class="font-bold">Email Us</h1>
-                        <p class="text-gray-400"></p>
+                        <p class="text-gray-400">angeli.cafe@gmail.com</p>
                     </div>
                 </div>
             </div>
@@ -72,7 +72,7 @@
                     </span>
                     <div class="flex flex-col">
                         <h1 class="font-bold">Visit Us</h1>
-                        <p class="text-gray-400"></p>
+                        <p class="text-gray-400">Jalan Angkasa 1 No. 2</p>
                     </div>
                 </div>
             </div>

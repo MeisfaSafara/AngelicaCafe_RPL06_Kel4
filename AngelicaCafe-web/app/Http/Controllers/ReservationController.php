@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\TableStatus;
 use Illuminate\Http\Request;
 use App\Models\Reservation;
-use App\Models\Table;
 
 class ReservationController extends Controller
 {
@@ -13,9 +11,10 @@ class ReservationController extends Controller
     {
         return view('reservations.step-one');
     }
+
     public function storeStepOne(Request $request)
     {
-        // Validasi data
+        // Validate data
         $validatedData = $request->validate([
             'name' => 'required|string',
             'email' => 'required|email',
@@ -26,16 +25,23 @@ class ReservationController extends Controller
             'guest_number' => 'required|integer|min:1',
         ]);
 
-        Reservation::create($validatedData);
+        // Create reservation
+        $reservation = Reservation::create($validatedData);
+
+        // Store reservation ID in session
+        $request->session()->put('reservation_id', $reservation->id);
 
         return redirect()->route('reservations.step-two');
     }
+
     public function stepTwo()
     {
         return view('reservations.step-two');
     }
+
     public function storeStepTwo(Request $request)
     {
+        // Validate data
         $validatedData = $request->validate([
             'location' => 'required|string',
             'venue' => 'required|string',
@@ -43,20 +49,22 @@ class ReservationController extends Controller
             'additional_order' => 'nullable|string',
         ]);
 
-        $reservation = Reservation::latest()->first();
+        // Retrieve reservation ID from session
+        $reservationId = $request->session()->pull('reservation_id');
+
+        if (!$reservationId) {
+            return redirect()->route('reservations.step-one')->with('error', 'No reservation found to update.');
+        }
+
+        // Update reservation
+        $reservation = Reservation::find($reservationId);
+
+        if (!$reservation) {
+            return redirect()->route('reservations.step-one')->with('error', 'No reservation found to update.');
+        }
 
         $reservation->update($validatedData);
-        $reservation = $request->session()->get('reservation');
-        $request->session()->forget('reservation');
 
-        return redirect()->route('reservations.finish-step');
+        return redirect()->route('reservations.step-one')->with('success', 'Reservation made successfully!');
     }
-
-    
-    public function finishstep()
-    {
-        $reservation = Reservation::latest()->first();
-        return view('reservations.finish-step', compact('reservation'));
-    }
-
 }
