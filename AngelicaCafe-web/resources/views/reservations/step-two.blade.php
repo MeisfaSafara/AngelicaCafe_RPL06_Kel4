@@ -16,6 +16,7 @@
     {{-- DaisyUI --}}
 
     <title>Make Reservation - Step 2</title>
+
     <title>Document</title>
 </head>
 
@@ -121,6 +122,7 @@
             // event.preventDefault(); // Remove this line to allow form submission
 
             // Display the success modal
+
             event.preventDefault();
             // Show the modal
             document.getElementById('successModal').classList.remove('hidden');
