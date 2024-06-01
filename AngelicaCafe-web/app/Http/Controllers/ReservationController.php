@@ -26,6 +26,11 @@ class ReservationController extends Controller
         ]);
 
         // Create reservation
+
+        $reservation = Reservation::create($validatedData);
+
+        // Store reservation ID in session
+        $request->session()->put('reservation_id', $reservation->id);
         $reservation = Reservation::create($validatedData);
 
         // Store reservation ID in session
@@ -51,6 +56,22 @@ class ReservationController extends Controller
 
         // Retrieve reservation ID from session
         $reservationId = $request->session()->pull('reservation_id');
+
+
+        if (!$reservationId) {
+            return redirect()->route('reservations.step-one')->with('error', 'No reservation found to update.');
+        }
+
+        // Update reservation
+        $reservation = Reservation::find($reservationId);
+
+        if (!$reservation) {
+            return redirect()->route('reservations.step-one')->with('error', 'No reservation found to update.');
+        }
+
+        $reservation->update($validatedData);
+
+        return redirect()->route('reservations.step-one')->with('success', 'Reservation made successfully!');
 
         if (!$reservationId) {
             return redirect()->route('reservations.step-one')->with('error', 'No reservation found to update.');

@@ -133,6 +133,7 @@
                             <label for="additional_order" class="block text-sm font-medium text-gray-700">Additional Order</label>
                             <input type="text" name="additional_order" id="additional_order" value="{{ $reservation->additional_order }}" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200">
                         </div>
+
                     </div>
 
                     <div class="flex justify-between mt-6">
