@@ -32,9 +32,8 @@
     {{-- NAVBAR --}}
     <div class="w-full h-[20em] flex flex-col justify-center items-center"
         style="background-image: url({{ url('/img/MenuBackground.png') }}); background-size: cover">
-        <h1 class="text-4xl font-bold text-white mb-4">Favorites</h1>
-        <p class="text-white text-xl w-[20em] text-center">Explore the tastes, catering
-            menus for every palate!</p>
+        <h1 class="text-4xl font-bold text-white mb-4">Favourite</h1>
+        <p class="text-white text-xl w-[20em] text-center">Find all your liked menu here!</p>
 
         {{-- <img src={{ asset('/img/MenuBackground.png') }} class="w-full h-full" alt=""> --}}
     </div>
@@ -119,7 +118,6 @@
                                 </form>
                                 <a class="btn text-white bg-[#764507]" href="{{ route('cart.add', $item->id_produk) }}">Add to cart</a>
                             </div>
-
                         </div>
                     </div>
                 </div>
