@@ -10,6 +10,7 @@ class Favourite extends Model
     use HasFactory;
 
     protected $fillable = [
+        'id_fav',
         'user_id',
         'produk_id',
     ];
@@ -18,4 +19,10 @@ class Favourite extends Model
     {
         return $this->belongsTo(Produk::class, 'produk_id', 'id_produk');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 }
+
