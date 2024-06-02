@@ -8,67 +8,82 @@ use Illuminate\Http\Request;
 
 class MenuController extends Controller
 {
-
+    // Display all products or products by category
     public function index($id = null)
     {
-        if ($id) {
-            $produkByKategori = Produk::where('id_kategori', $id)->get();
-        } else {
-            $produkByKategori = Produk::all();
-        }
-
+        $produkByKategori = $id ? Produk::where('id_kategori', $id)->get() : Produk::all();
         $kategoris = Kategori::all();
+
+        
+        $favouriteProductIds = $this->getFavouriteProductIds();
 
         return view('menu', [
             'produk' => $produkByKategori,
-            'kategoris' => $kategoris
+            'kategoris' => $kategoris,
+            'favouriteProductIds' => $favouriteProductIds
         ]);
     }
 
-
-    public function menuUser(){
+    // Display all products for user dashboard
+    public function menuUser()
+    {
         $produk = Produk::all();
 
-        return view('dashboard',[
+        return view('dashboard', [
             'produks' => $produk
         ]);
     }
 
+    // Display product details
     public function showDetail($id)
-        {
+    {
         $produk = Produk::findOrFail($id);
 
         return view('menu.detail', ['produk' => $produk]);
     }
 
-    public function search(Request $request){
+    // Search for products by name
+    public function search(Request $request)
+    {
         $query = $request->input('search');
-
-        $produkData = Produk::getAllData();
         $produk = Produk::where('nama_Produk', 'LIKE', "%{$query}%")->get();
-        return view('MenuOutput', compact('produk'));
+
+        
+        $favouriteProductIds = $this->getFavouriteProductIds();
+
+        return view('MenuOutput', compact('produk', 'favouriteProductIds'));
     }
 
+    // Filter products based on price range
     public function filter(Request $request)
-{
-    $filters = $request->input('filters');
+    {
+        $filters = $request->input('filters');
+        $produkQuery = Produk::query();
 
-    $produkQuery = Produk::query();
+        if (in_array('cheap', $filters)) {
+            $produkQuery->orWhere('harga', '<', 6000);
+        }
 
-    if (in_array('cheap', $filters)) {
-        $produkQuery->orWhere('harga', '<', 6000);
+        if (in_array('medium', $filters)) {
+            $produkQuery->orWhereBetween('harga', [6000, 10000]);
+        }
+
+        if (in_array('expensive', $filters)) {
+            $produkQuery->orWhere('harga', '>', 10000);
+        }
+
+        $produk = $produkQuery->get();
+
+       
+        $favouriteProductIds = $this->getFavouriteProductIds();
+
+        return view('MenuOutput', compact('produk', 'favouriteProductIds'));
     }
 
-    if (in_array('medium', $filters)) {
-        $produkQuery->orWhereBetween('harga', [6000, 10000]);
+   
+    private function getFavouriteProductIds()
+    {
+        
+        return [];
     }
-
-    if (in_array('expensive', $filters)) {
-        $produkQuery->orWhere('harga', '>', 10000);
-    }
-    $produk = $produkQuery->get();
-
-    return view('MenuOutput', compact('produk'));
-}
-
 }
