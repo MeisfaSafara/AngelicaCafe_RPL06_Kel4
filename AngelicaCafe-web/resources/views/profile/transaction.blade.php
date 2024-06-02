@@ -87,16 +87,16 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="ml-auto flex gap-4">
                         @if ($orders->status === 'success')
                             <div>
-                                <a href="{{ route('trackOrder', $orders->id) }}" class="btn btn-success">Lacak Pesanan</a> 
+                                <a href="{{ route('trackOrder', $orders->id) }}" class="btn btn-success">Lacak Pesanan</a>
                             </div>
                         @endif
 
                         <div>
-                            <a href="" class="btn">Lihat Detail</a> 
+                            <a href="{{ route('transaction.detail', $orders->id) }}" class="btn">Lihat Detail</a>
                         </div>
 
                         @if ($orders->status === 'success')

@@ -189,6 +189,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/updatecart',[CartController::class,'updateCart']);
     Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
     Route::get('/profile/transaction',[TransactionController::class,'showOrder'])->name('profile.transaction');
+    Route::get('/profile/transaction/detail/{id}', [UserController::class,'detailTransaction'])->name('transaction.detail');
     Route::get('/profile/track-orders/{id}', [UserController::class,'trackOrder'])->name('trackOrder');
     Route::get('/profile/reservation', [AdminReservationController::class, 'showReservations'])->name('profile.reservation');
 });
