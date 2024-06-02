@@ -3,6 +3,7 @@
     <ul class="flex gap-3">
         <li><a href="/" class="font-bold text-[#85581F]">Home</a></li>
         <li><a href="/menu" class="font-bold text-[#85581F]">Menu</a></li>
+        <li><a href="/fav" class="font-bold text-[#85581F]">Favourite</a></li>
         <li><a href="/about" class="font-bold text-[#85581F]">About Us</a></li>
         <li><a href="/contact" class="font-bold text-[#85581F]">Contact</a></li>
         <li><a href="{{ route('reservations.step-one') }}" class="font-bold text-[#85581F]">Reservasi</a></li>

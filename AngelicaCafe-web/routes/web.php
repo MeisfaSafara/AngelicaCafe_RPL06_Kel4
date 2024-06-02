@@ -74,7 +74,11 @@ Route::get('/cart', function () {
     return view('cart');
 });
 // fitur Favourite Menu
-Route::post('/favourite/{id}', [FavouriteController::class, 'toggleFavourite']);
+Route::get('/fav', [FavouriteController::class, 'index'])->name('favourite');
+Route::post('/favourites/add', [FavouriteController::class, 'addFavourite'])->name('favourites.add');
+Route::post('/favourites/remove', [FavouriteController::class, 'removeFavourite'])->name('favourites.remove');
+// Route::post('/favourite/{id}', [FavouriteController::class, 'toggleFavourite']);
+
 
 
 Route::get('/checkout', function () {

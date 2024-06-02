@@ -2,43 +2,67 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Favourite;
+use App\Models\Kategori;
 use App\Models\Produk;
-use Auth;
+use App\Models\Favourite;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FavouriteController extends Controller
 {
-    public function toggleFavourite($id)
+
+    public function index()
     {
         $user = Auth::user();
-        $favourite = Favourite::where('user_id', $user->id)->where('produk_id', $id)->first();
 
-        if ($favourite) {
-            $favourite->delete();
-            $status = 'removed';
-        } else {
-            Favourite::create([
-                'user_id' => $user->id,
-                'produk_id' => $id,
-            ]);
-            $status = 'added';
+        if (!$user) {
+            return redirect()->route('login');
         }
 
-        // Fetch all favourites for the user
-        $favourites = Favourite::where('user_id', $user->id)->with('produk')->get()->map(function ($favourite) {
-            return [
-                'id_produk' => $favourite->produk->id_produk,
-                'nama_Produk' => $favourite->produk->nama_Produk,
-                'deskripsi' => $favourite->produk->deskripsi,
-                'harga' => $favourite->produk->harga,
-                'gambar' => $favourite->produk->gambar,
-            ];
-        });
+        $favouriteProducts = $user->favourites()->with('produk')->get();
+        
+        $favouriteProductIds = $favouriteProducts->pluck('produk_id');
+        
+        $produkByFavourites = Produk::whereIn('id_produk', $favouriteProductIds)->get();
 
-        return response()->json([
-            'status' => $status,
-            'favourites' => $favourites,
+        return view('favourite', [
+            'produk' => $produkByFavourites, 
+            'kategoris' => Kategori::all(),
+            'favouriteProductIds' => $favouriteProductIds->toArray(),
         ]);
     }
+
+    public function addFavourite(Request $request)
+    {
+        $user = Auth::user();
+        $produkId = $request->input('produk_id');
+
+        if (!$user) {
+            return redirect()->route('login');
+        }
+
+        Favourite::create([
+            'user_id' => $user->id,
+            'produk_id' => $produkId,
+        ]);
+
+        return back();
+    }
+
+    public function removeFavourite(Request $request)
+    {
+        $user = Auth::user();
+        $produkId = $request->input('produk_id');
+
+        if (!$user) {
+            return redirect()->route('login');
+        }
+
+        Favourite::where('user_id', $user->id)->where('produk_id', $produkId)->delete();
+
+        return back();
+    }
+
+
 }
