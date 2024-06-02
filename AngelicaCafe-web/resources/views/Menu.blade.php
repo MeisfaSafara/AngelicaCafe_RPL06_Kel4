@@ -24,7 +24,7 @@
 
     <div class="flex flex-col justify-center w-full mt-[3em]">
         <div class="flex">
-            <div class="bg-[#D1BAA4] text-[#3E2E27] w-[20%] top-[52%] px-4 pt-2 rounded-xl right-[73%] absolute">
+            <div class="bg-[#D1BAA4] text-[#3E2E27] w-[14%] top-[56%] px-4 pt-2 rounded-xl right-[73%] absolute">
                 <h1 class="font-semibold text-center text-xl">Filter</h1>
                 <form action="/filter" class="my-1" method="GET">
                     <div class="flex flex-col justify-between">
@@ -71,8 +71,8 @@
             @foreach ($produk as $item)
                 <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5">
                     <div class="card card-compact w-full bg-base-100 shadow-xl">
-                        <figure>
-                            <img class="object-cover" src="{{ asset('storage/img/produk/'.$item->gambar) }}" alt="Shoes" />
+                        <figure class="h-48 w-full">
+                            <img class="object-cover h-full w-full" src="{{ asset('storage/img/produk/'.$item->gambar) }}" alt="Shoes" />
                             <div class="absolute top-[10px] right-[15px]">
                                 <h1 class="py-2 text-semibold px-3 bg-white text-gray-400 rounded-xl">
                                     {{ $item->harga }}
