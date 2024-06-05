@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
-class TCFavourite001Test.php extends DuskTestCase
+class TCFavourite001Test extends DuskTestCase
 {
     /**
      * A Dusk test example.
@@ -18,7 +18,7 @@ class TCFavourite001Test.php extends DuskTestCase
             $browser->visit('/')
                     ->assertSee('Favourite')
                     ->clickLink('Favourite')
-                    ->assertPathIs('/fav')
+                    ->assertPathIs('/fav');
 
         });
     }

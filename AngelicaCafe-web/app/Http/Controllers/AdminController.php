@@ -9,11 +9,15 @@ use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
-    public function index() {
+    public function index(Request $request) {
+        $selectedMonth = $request->query('month', now()->month);
+
         $orders = Order::where('status', 'success')->get();
         $totalSalesToday = Order::where('status', 'success')->whereDate('created_at', now()->toDateString())->sum('total_amount');
         $totalOrdersToday = Order::where('status', 'success')->whereDate('created_at', now()->toDateString())->count();
+
         $popularProducts = OrderDetail::select('product_id', DB::raw('SUM(quantity) as total_quantity'))
+            ->whereMonth('created_at', $selectedMonth)
             ->groupBy('product_id')
             ->orderBy('total_quantity', 'desc')
             ->take(5)
@@ -53,7 +57,9 @@ class AdminController extends Controller
             'totalSalesToday' => $totalSalesToday,
             'totalOrdersToday' => $totalOrdersToday,
             'popularProducts' => $popularProducts,
-            'chartData' => json_encode($chartData)
+            'chartData' => json_encode($chartData),
+            'months' => $months,
+            'selectedMonth' => $selectedMonth
         ]);
     }
 }

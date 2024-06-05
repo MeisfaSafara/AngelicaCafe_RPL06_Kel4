@@ -21,7 +21,7 @@
 
     @include('layout.sidebar')
     <div class="p-4 sm:ml-64">
-        <div class="flex flex-col gap-4">
+        <div class="flex flex-col gap-6">
             <ul class="grid grid-cols-1 gap-6 sm:grid-cols-2">
                 <li class="bg-gray-100 rounded-lg shadow-md p-6">
                     <span class="block text-lg font-semibold text-gray-800 mb-2">Total Sales Today</span>
@@ -37,6 +37,21 @@
                 <canvas id="salesChart"></canvas>
             </div>
             <div id="chart-data" data-chart="{{ $chartData }}" class="hidden"></div>
+
+            <div class="bg-gray-100 rounded-lg shadow-md p-6">
+                <form id="filterForm" method="GET" action="{{ route('admin.dashboard') }}">
+                    <label for="month" class="block text-lg font-semibold text-gray-800 mb-2">Popular Products</label>
+                    <div class="relative">
+                        <select id="month" name="month" class="form-select block w-full mt-1 p-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-blue-500" onchange="document.getElementById('filterForm').submit();">
+                            @foreach ($months as $month)
+                                <option value="{{ $month }}" {{ $month == $selectedMonth ? 'selected' : '' }}>
+                                    {{ date('F', mktime(0, 0, 0, $month, 10)) }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </form>
+            </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach ($popularProducts as $product)
