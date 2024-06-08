@@ -17,8 +17,8 @@ class TCAddress0021Test extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->visit('/login')
             ->type('email', 'user@gmail.com')
-            ->type('password', 'user@gmail.com') 
-            ->press('Login') 
+            ->type('password', 'user@gmail.com')
+            ->press('Login')
             ->assertPathIs('/profile')
             ->assertSee('Address List')
             ->clickLink('Address List')
