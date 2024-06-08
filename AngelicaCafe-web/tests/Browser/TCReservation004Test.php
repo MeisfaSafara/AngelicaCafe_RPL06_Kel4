@@ -15,17 +15,18 @@ class TCReservation004Test extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/admin')
-                    ->assertSee('Reservasi')
-                    ->clickLink('Reservasi')
-                    ->assertPathIs('/admin/reservations')
-                    ->with('table tbody tr:nth-child(1)', function ($tr) {
-                        $tr->assertSee('rama akhir')
-                           ->clickLink('Edit');
-                    })
-                    ->assertPathIs('/admin/admin/reservations/18/edit')
-                    ->assertSee('Status')
-                    ->select('status', 'confirmed')
-                    ->press('Save Changes')
+            ->assertSee('Reservasi')
+            ->clickLink('Reservasi')
+            ->assertPathIs('/admin/reservations')
+            ->with('table tbody tr:nth-child(1)', function ($tr) {
+                $tr->assertSee('rama akhir')
+                   ->clickLink('Edit');
+            })
+            ->assertPathIs('/admin/admin/reservations/18/edit')
+            ->assertSee('Status')
+            ->select('status', '')
+            ->press('Save Changes')
+            ->assertSee('The status field is required.')
                 
                 ;
         });
