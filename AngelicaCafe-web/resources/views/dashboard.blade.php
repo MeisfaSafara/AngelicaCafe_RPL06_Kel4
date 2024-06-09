@@ -126,7 +126,7 @@
                         </div>
                     </div>
 
-                   
+
 
                 </div>
                 {{-- <div
@@ -240,7 +240,11 @@
         };
         document.body.appendChild(script);
     </script>
-
+    @if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+    @endif
 
 
 

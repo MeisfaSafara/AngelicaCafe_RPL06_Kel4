@@ -16,6 +16,7 @@ use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\AdminReservationController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\FavouriteController;
+use App\Http\Controllers\ContactController;
 
 
 
@@ -40,9 +41,9 @@ Route::get('/forgot', function () {
 Route::get('/signup', function () {
     return view('/auth/signup');
 });
-Route::get('/contact', function () {
-    return view('contact');
-});
+// Route::get('/contact', function () {
+//     return view('contact');
+// });
 Route::get('/about', function () {
     return view('about');
 });
@@ -85,9 +86,9 @@ Route::get('/checkout', function () {
     return view('checkout');
 });
 
-Route::get('/contact', function () {
-    return view('contact');
-});
+// Route::get('/contact', function () {
+//     return view('contact');
+// });
 
 Route::get('/admin', function () {
     return view('admin.dashboard');
@@ -193,3 +194,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/profile/track-orders/{id}', [UserController::class,'trackOrder'])->name('trackOrder');
     Route::get('/profile/reservation', [AdminReservationController::class, 'showReservations'])->name('profile.reservation');
 });
+
+//nNEW MEISFA
+Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
+// Route::get('/contact', [ContactController::class, 'create'])->name('contact');
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+Route::get('/admin/contactforms', [ContactController::class, 'show'])->name('contact.show');

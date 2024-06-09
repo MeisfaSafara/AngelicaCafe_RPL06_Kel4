@@ -14,7 +14,7 @@
         </div>
         <div class="flex items-center">
             <div class="flex items-center ms-3">
-              
+
               <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600" id="dropdown-user">
                 <div class="px-4 py-3" role="none">
                   <p class="text-sm text-gray-900 dark:text-white" role="none">
@@ -44,7 +44,7 @@
       </div>
     </div>
   </nav>
-  
+
   <aside id="logo-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700" aria-label="Sidebar">
      <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
         <ul class="space-y-2 font-medium">
@@ -57,7 +57,7 @@
                  <span class="ms-3">Dashboard</span>
               </a>
            </li>
-        
+
            <li>
               <a href="/admin/orders" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                  <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -66,7 +66,7 @@
                  <span class="flex-1 ms-3 whitespace-nowrap">Order</span>
               </a>
            </li>
-         
+
            <li>
               <a href="/admin/produks" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                  <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
@@ -111,6 +111,15 @@
                   <span class="flex-1 ms-3 whitespace-nowrap">Reservasi</span>
                </a>
             </li>
+
+            <li>
+                <a href="/admin/contactforms" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M20 21H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h4V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2zM4 7v12h16V7H4zM9 10v4a1 1 0 0 0 2 0v-4a1 1 0 0 0-2 0z"/>
+                    </svg>
+                    <span class="flex-1 ms-3 whitespace-nowrap">Contact Forms</span>
+                </a>
+            </li>
             
            <li>
               <a href="/logout" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
@@ -125,9 +134,8 @@
         </ul>
      </div>
   </aside>
-  
+
   <div class="p-8 sm:ml-64">
 
-    
+
   </div>
-  
